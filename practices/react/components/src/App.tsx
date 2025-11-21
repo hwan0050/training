@@ -1,57 +1,134 @@
-// App.tsx - React 기초 학습
-
 import React from 'react';
-import './index.css';
 import Greeting from './Greeting';
 import Counter from './Counter';
 import TodoList from './TodoList';
+import TodoListEnhanced from './TodoListEnhanced';
 import Timer from './Timer';
 import DataFetcher from './DataFetcher';
 import WindowSize from './WindowSize';
 
 function App() {
   return (
-    <div style={{ padding: '20px', maxWidth: '800px', margin: '0 auto' }}>
-      <h1>🎨 React 기초 학습</h1>
-      <p>안녕하세요! React와 TypeScript로 만든 첫 컴포넌트입니다.</p>
-      
-      <div style={{ 
-        backgroundColor: '#f0f0f0', 
-        padding: '20px', 
-        borderRadius: '8px',
-        marginTop: '20px'
-      }}>
-        <h2>📚 학습 목표</h2>
-        <ul>
-          <li>JSX 문법 이해하기 ✅</li>
-          <li>컴포넌트 만들기 ✅</li>
-          <li>Props 전달하기 ✅</li>
-          <li>State 관리하기 ✅</li>
-          <li>Hooks 사용하기 ✅</li>
-        </ul>
-      </div>
+    <div style={styles.app}>
+      <header style={styles.header}>
+        <h1>🚀 React + TypeScript 학습 프로젝트</h1>
+        <p>Git Factory - React 기초 실습</p>
+      </header>
 
-      <div style={{ marginTop: '20px' }}>
-        <h2>🎯 Props 실습</h2>
-        <Greeting name="환" age={25} />
-        <Greeting name="김철수" />
-        <Greeting name="이영희" age={30} />
-      </div>
+      <main style={styles.main}>
+        {/* 섹션 1: Props 예제 */}
+        <section style={styles.section}>
+          <h2>1️⃣ Props 전달</h2>
+          <Greeting name="Hwan" />
+          <Greeting name="React" />
+        </section>
 
-      <div style={{ marginTop: '20px' }}>
-        <h2>🎣 useState Hook 실습</h2>
-        <Counter />
-        <TodoList />
-      </div>
+        {/* 섹션 2: useState 예제 - Counter */}
+        <section style={styles.section}>
+          <h2>2️⃣ useState Hook - Counter</h2>
+          <Counter />
+        </section>
 
-      <div style={{ marginTop: '20px' }}>
-        <h2>⚡ useEffect Hook 실습</h2>
-        <Timer />
-        <DataFetcher />
-        <WindowSize />
-      </div>
+        {/* 섹션 3: useState 예제 - TodoList (기본) */}
+        <section style={styles.section}>
+          <h2>3️⃣ useState Hook - Todo List (기본)</h2>
+          <TodoList />
+        </section>
+
+        {/* 섹션 4: useState + Custom Hook - TodoList Enhanced (신규!) */}
+        <section style={styles.sectionHighlight}>
+          <h2>✨ 4️⃣ Enhanced Todo List (NEW!)</h2>
+          <p style={styles.description}>
+            LocalStorage + 필터링 + 수정 기능이 추가된 개선 버전
+          </p>
+          <TodoListEnhanced />
+        </section>
+
+        {/* 섹션 5: useEffect 예제 - Timer */}
+        <section style={styles.section}>
+          <h2>5️⃣ useEffect Hook - Timer</h2>
+          <Timer />
+        </section>
+
+        {/* 섹션 6: useEffect 예제 - Data Fetching */}
+        <section style={styles.section}>
+          <h2>6️⃣ useEffect Hook - API 호출</h2>
+          <DataFetcher />
+        </section>
+
+        {/* 섹션 7: useEffect 예제 - Window Size */}
+        <section style={styles.section}>
+          <h2>7️⃣ useEffect Hook - 이벤트 리스너</h2>
+          <WindowSize />
+        </section>
+      </main>
+
+      <footer style={styles.footer}>
+        <p>
+          Made with ❤️ by Hwan Lee | {' '}
+          <a 
+            href="https://github.com/hwan0050/git-factory" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            style={styles.link}
+          >
+            GitHub Repository
+          </a>
+        </p>
+      </footer>
     </div>
   );
 }
+
+const styles: { [key: string]: React.CSSProperties } = {
+  app: {
+    minHeight: '100vh',
+    backgroundColor: '#f5f5f5',
+  },
+  header: {
+    backgroundColor: '#282c34',
+    padding: '30px',
+    color: 'white',
+    textAlign: 'center',
+    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+  },
+  main: {
+    maxWidth: '1200px',
+    margin: '0 auto',
+    padding: '40px 20px',
+  },
+  section: {
+    backgroundColor: 'white',
+    padding: '30px',
+    marginBottom: '30px',
+    borderRadius: '8px',
+    boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+  },
+  sectionHighlight: {
+    backgroundColor: '#fff9e6',
+    padding: '30px',
+    marginBottom: '30px',
+    borderRadius: '8px',
+    boxShadow: '0 2px 8px rgba(255,193,7,0.3)',
+    border: '3px solid #FFC107',
+  },
+  description: {
+    color: '#666',
+    fontSize: '14px',
+    marginBottom: '20px',
+    textAlign: 'center',
+  },
+  footer: {
+    backgroundColor: '#282c34',
+    padding: '20px',
+    color: 'white',
+    textAlign: 'center',
+    marginTop: '40px',
+  },
+  link: {
+    color: '#61dafb',
+    textDecoration: 'none',
+  },
+};
 
 export default App;
