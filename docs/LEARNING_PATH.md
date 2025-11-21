@@ -5,7 +5,6 @@
 ## 🎯 학습 목표
 
 이 로드맵은 **풀스택 개발자**이자 **MSA 아키텍트**로 성장하기 위한 단계별 가이드입니다.
-
 ```
 Junior Developer
        ↓
@@ -37,11 +36,11 @@ MSA Architect (12-18개월)
 ### Week 1-2: Git & 협업 도구
 
 #### 학습 내용
-- [ ] Git 기본 명령어 (add, commit, push, pull)
-- [ ] 브랜치 생성 및 병합
-- [ ] Conflict 해결
-- [ ] GitHub 사용법
-- [ ] Pull Request 작성
+- [x] Git 기본 명령어 (add, commit, push, pull)
+- [x] 브랜치 생성 및 병합
+- [x] Conflict 해결
+- [x] GitHub 사용법
+- [x] Pull Request 작성
 
 #### 실습 과제
 ```bash
@@ -60,17 +59,25 @@ git push origin feature/my-first-pr
 - [Git 브랜치 전략](../docs/GIT_WORKFLOW.md)
 - [Atlassian Git Tutorial](https://www.atlassian.com/git/tutorials)
 
+#### 체크포인트
+- [x] Git 기본 명령어 숙달
+- [x] 브랜치 전략 이해
+- [x] Conflict 해결 경험
+- [x] Pull Request 작성 및 Merge
+
+**✅ Week 1-2 완료! (2024-11-18)**
+
 ---
 
 ### Week 3-4: TypeScript 기초
 
 #### 학습 내용
-- [ ] TypeScript 설치 및 설정
-- [ ] 기본 타입 (string, number, boolean, array)
-- [ ] 인터페이스 (Interface)
-- [ ] 타입 별칭 (Type Alias)
-- [ ] 유니온과 인터섹션 타입
-- [ ] 제네릭 기초
+- [x] TypeScript 설치 및 설정
+- [x] 기본 타입 (string, number, boolean, array)
+- [x] 인터페이스 (Interface)
+- [x] 타입 별칭 (Type Alias)
+- [x] 유니온과 인터섹션 타입
+- [x] 제네릭 기초
 
 #### 실습 과제
 ```typescript
@@ -103,22 +110,27 @@ function createUser(name: string, email: string): User {
 ```
 
 #### 체크포인트
-- [ ] TypeScript 컴파일 오류 없이 코드 작성 가능
-- [ ] 인터페이스와 타입 차이점 설명 가능
-- [ ] 제네릭의 필요성 이해
+- [x] TypeScript 컴파일 오류 없이 코드 작성 가능
+- [x] 인터페이스와 타입 차이점 설명 가능
+- [x] 제네릭의 필요성 이해
+- [x] 유틸리티 타입 (Partial, Pick, Omit) 활용
+
+**✅ Week 3-4 완료! (2024-11-18)**
 
 ---
 
 ### Week 5-6: React 기초
 
 #### 학습 내용
-- [ ] React 설치 및 프로젝트 생성
-- [ ] JSX 문법
-- [ ] 컴포넌트 (함수형 vs 클래스형)
-- [ ] Props와 State
-- [ ] 이벤트 핸들링
-- [ ] 조건부 렌더링
-- [ ] 리스트 렌더링
+- [x] React 설치 및 프로젝트 생성
+- [x] JSX 문법
+- [x] 컴포넌트 (함수형)
+- [x] Props와 State
+- [x] useState Hook
+- [x] useEffect Hook
+- [x] 이벤트 핸들링
+- [x] 조건부 렌더링
+- [x] 리스트 렌더링
 
 #### 실습 과제
 ```typescript
@@ -165,10 +177,14 @@ export const UserList: FC<UserListProps> = ({ initialUsers }) => {
 ```
 
 #### 체크포인트
-- [ ] 함수형 컴포넌트 작성 가능
-- [ ] useState Hook 사용 가능
-- [ ] Props 전달 및 사용 이해
-- [ ] 이벤트 핸들러 작성 가능
+- [x] 함수형 컴포넌트 작성 가능
+- [x] useState Hook 사용 가능
+- [x] useEffect Hook 활용 (타이머, API 호출, 이벤트 리스너)
+- [x] Props 전달 및 사용 이해
+- [x] 이벤트 핸들러 작성 가능
+- [x] 조건부 렌더링 구현
+
+**✅ Week 5-6 완료! (2024-11-18)**
 
 ---
 
@@ -286,7 +302,6 @@ async def create_user(user: User):
 ### Phase 1 총정리 프로젝트
 
 **프로젝트: 간단한 Todo 애플리케이션**
-
 ```
 Frontend: React + TypeScript
 Backend: Spring Boot 또는 FastAPI
@@ -661,7 +676,6 @@ EXPOSE 8080
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
 ```
-
 ```yaml
 # practices/docker/docker-compose.yml
 
@@ -718,7 +732,6 @@ networks:
 ### Phase 2 총정리 프로젝트
 
 **프로젝트: 블로그 플랫폼**
-
 ```
 Frontend: Next.js 14 (App Router)
 Backend: Spring Boot + JPA + Security
@@ -809,7 +822,6 @@ Container: Docker Compose
 ### Phase 3 총정리 프로젝트
 
 **프로젝트: 이커머스 플랫폼 (MSA)**
-
 ```
 Microservices:
   - API Gateway
@@ -854,8 +866,8 @@ Technology:
 ### 자가 평가 기준
 
 #### Frontend
-- [ ] TypeScript 타입 시스템 숙달
-- [ ] React Hooks 자유자재로 사용
+- [x] TypeScript 타입 시스템 숙달
+- [x] React Hooks 자유자재로 사용
 - [ ] Next.js SSR/SSG 구현 가능
 - [ ] 상태 관리 (Zustand/Recoil) 이해
 
