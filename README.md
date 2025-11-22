@@ -1,26 +1,14 @@
 # 🏭 Git Factory
 
-> **개발 학습 저장소** - Git 워크플로우, 코딩 실습, 최신 개발 방법론을 학습하는 공간
+> 🎓 **체계적인 풀스택 개발 학습 저장소** - Git 워크플로우부터 MSA까지
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
-
-## 📖 목차
-
-- [프로젝트 소개](#-프로젝트-소개)
-- [학습 기술 스택](#-학습-기술-스택)
-- [프로젝트 구조](#-프로젝트-구조)
-- [시작하기](#-시작하기)
-- [학습 로드맵](#-학습-로드맵)
-- [Git 워크플로우](#-git-워크플로우)
-- [기여하기](#-기여하기)
-- [라이선스](#-라이선스)
-
-## 🎯 프로젝트 소개
+[![GitHub stars](https://img.shields.io/github/stars/hwan0050/git-factory?style=social)](https://github.com/hwan0050/git-factory/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/hwan0050/git-factory?style=social)](https://github.com/hwan0050/git-factory/network/members)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 Git Factory는 **현대적인 웹 개발 기술과 MSA(Microservices Architecture)**를 학습하기 위한 체계적인 저장소입니다.
 
-### 주요 학습 목표
+## ✨ 특징
 
 - ✅ **Git 워크플로우** - 브랜치 전략, 협업, 코드 리뷰
 - ✅ **풀스택 개발** - Frontend부터 Backend까지
@@ -28,226 +16,288 @@ Git Factory는 **현대적인 웹 개발 기술과 MSA(Microservices Architectur
 - ✅ **최신 개발 방법론** - TDD, Clean Code, Agile
 - ✅ **실전 프로젝트** - 학습한 내용을 실제 프로젝트에 적용
 
-## 🛠 학습 기술 스택
+---
+
+## 🎯 Phase 1 완료! (2024-11-22)
+
+### ✅ 완성된 학습 내용
+
+#### 1. Git 워크플로우 마스터
+- [x] Git 기본 명령어 & 브랜치 전략
+- [x] Conflict 해결 실습
+- [x] Merge vs Rebase 비교
+- [x] Cherry-pick, Reset, Revert
+- [x] 실전 워크플로우 가이드 작성
+
+#### 2. TypeScript 완벽 정복
+- [x] TypeScript 기초 & 타입 시스템
+- [x] Type Guards 20개 구현
+- [x] Utility Types 11개 활용
+- [x] 실전 유틸리티 함수 45개 작성
+- [x] 제네릭 & 고급 타입 패턴
+
+#### 3. React 핵심 개념
+- [x] React 기초 (Hooks, State, Props)
+- [x] Custom Hook (useLocalStorage) 구현
+- [x] Enhanced TodoList (필터링, LocalStorage, 수정)
+- [x] 컴포넌트 설계 & 상태 관리
+
+#### 4. 통합 실전 프로젝트
+- [x] 🔖 **북마크 관리 앱** 완성!
+- [x] 완전한 CRUD 구현
+- [x] TypeScript + React 통합
+- [x] LocalStorage 영구 저장
+- [x] 필터링, 검색, 정렬 기능
+
+### 📊 Phase 1 성과
+- **코드**: ~4,000줄
+- **PR**: 4개 (모두 Merged)
+- **프로젝트**: 1개 (실사용 가능)
+- **학습 시간**: 약 15시간
+
+---
+
+## 🛠️ 기술 스택
 
 ### Frontend
-```
-React 18+          - UI 라이브러리
-Next.js 14+        - React 프레임워크 (App Router)
-TypeScript 5+      - 타입 안전성
-Tailwind CSS       - 스타일링
-Zustand/Recoil     - 상태 관리
-React Query        - 서버 상태 관리
-```
+- **React 18+** - UI 라이브러리
+- **TypeScript 5+** - 타입 안전성
+- **Next.js 14+** - React 프레임워크 (App Router) *[예정]*
+- **Tailwind CSS** - 스타일링 *[예정]*
 
 ### Backend
-```
-Java 17+           - Spring Boot 3.x
-Python 3.11+       - FastAPI, Django
-Node.js 20+        - Express (검토 중)
-```
+- **Java 17+** - Spring Boot 3.x *[예정]*
+- **Python 3.11+** - FastAPI, Django *[예정]*
+- **Node.js 20+** - Express *[검토 중]*
 
-### MSA & Infrastructure
-```
-Spring Cloud       - MSA 프레임워크
-Docker             - 컨테이너화
-Kubernetes         - 오케스트레이션 (학습 예정)
-Kafka/RabbitMQ     - 메시지 큐
-Redis              - 캐싱 & 세션
-PostgreSQL/MySQL   - 데이터베이스
-MongoDB            - NoSQL
-Elasticsearch      - 검색 엔진 (검토 중)
-```
+### Database & Cache
+- **PostgreSQL/MySQL** - 관계형 데이터베이스 *[예정]*
+- **MongoDB** - NoSQL *[예정]*
+- **Redis** - 캐싱 & 세션 *[예정]*
 
 ### DevOps & Tools
-```
-Git & GitHub       - 버전 관리
-GitHub Actions     - CI/CD
-Nginx              - 리버스 프록시
-Prometheus/Grafana - 모니터링 (학습 예정)
-```
+- **Git & GitHub** - 버전 관리 ✅
+- **Docker** - 컨테이너화 *[예정]*
+- **GitHub Actions** - CI/CD *[예정]*
+
+---
 
 ## 📂 프로젝트 구조
+
 ```
 git-factory/
 ├── README.md                      # 프로젝트 소개
 ├── LICENSE                        # MIT 라이선스
 ├── .gitignore                     # Git 제외 파일
-├── CONTRIBUTING.md                # 기여 가이드
 │
 ├── docs/                          # 📚 학습 문서
 │   ├── GIT_WORKFLOW.md           # Git 작업 정책
-│   ├── MSA_ARCHITECTURE.md       # MSA 아키텍처 가이드
 │   ├── LEARNING_PATH.md          # 학습 로드맵
-│   ├── HANDOVER_TYPESCRIPT.md    # TypeScript 인수인계
-│   ├── HANDOVER_REACT.md         # React 인수인계
-│   └── API_DESIGN.md             # API 설계 가이드
+│   └── MSA_ARCHITECTURE.md       # MSA 아키텍처 가이드 (예정)
 │
 ├── workflows/                     # 🔄 Git 워크플로우 학습
-│   ├── git-basics/               # Git 기초
-│   ├── branching-strategies/     # 브랜치 전략
-│   └── collaboration/            # 협업 방법
+│   └── git-practice/             # ✅ Git 실습
+│       ├── GIT_WORKFLOW_GUIDE.md # 워크플로우 완전 가이드
+│       └── practice.txt          # 실습 파일
 │
 ├── practices/                     # 💻 코딩 실습
-│   ├── java/                     # Java 실습
-│   │   ├── spring-boot/         # Spring Boot 기초
-│   │   ├── jpa/                 # JPA/Hibernate
-│   │   └── design-patterns/     # 디자인 패턴
-│   ├── python/                   # Python 실습
-│   │   ├── fastapi/             # FastAPI 기초
-│   │   ├── django/              # Django (검토 중)
-│   │   └── algorithms/          # 알고리즘
-│   ├── react/                    # React 실습
-│   │   ├── components/          # 컴포넌트 설계
-│   │   ├── hooks/               # Custom Hooks
-│   │   └── state-management/    # 상태 관리
-│   ├── nextjs/                   # Next.js 실습
-│   │   ├── app-router/          # App Router
-│   │   ├── server-components/   # Server Components
-│   │   └── api-routes/          # API Routes
-│   └── typescript/               # TypeScript 실습
-│       ├── fundamentals/        # 타입 기초
-│       ├── advanced/            # 고급 타입
-│       └── generics/            # 제네릭
+│   ├── react/                    # ✅ React 실습
+│   │   └── components/           # React 컴포넌트 학습
+│   │       ├── src/
+│   │       │   ├── hooks/       # Custom Hooks
+│   │       │   ├── Counter.tsx
+│   │       │   ├── TodoList.tsx
+│   │       │   ├── TodoListEnhanced.tsx  # ⭐ 개선 버전
+│   │       │   └── ...
+│   │       └── package.json
+│   │
+│   └── typescript/               # ✅ TypeScript 실습
+│       └── utilities/            # TypeScript 유틸리티
+│           ├── type-guards.ts   # Type Guard 20개
+│           ├── utility-types.ts # Utility Types 11개
+│           └── utility-functions.ts  # 유틸리티 함수 45개
 │
-├── methodologies/                 # 📋 개발 방법론
-│   ├── agile/                    # 애자일 방법론
-│   ├── tdd/                      # 테스트 주도 개발
-│   ├── clean-code/               # 클린 코드
-│   └── solid/                    # SOLID 원칙
-│
-├── microservices/                 # 🏗 MSA 실습 프로젝트
-│   ├── api-gateway/              # API Gateway (Spring Cloud Gateway)
-│   ├── discovery-service/        # Service Discovery (Eureka)
-│   ├── config-service/           # Config Server
-│   ├── auth-service/             # 인증/인가 서비스
-│   ├── user-service/             # 사용자 서비스
-│   ├── order-service/            # 주문 서비스 (예시)
-│   ├── notification-service/     # 알림 서비스 (예시)
-│   └── common/                   # 공통 라이브러리
-│
-└── projects/                      # 🚀 실전 프로젝트
-    ├── e-commerce/               # 이커머스 플랫폼 (예정)
-    ├── blog-platform/            # 블로그 플랫폼 (예정)
-    └── task-management/          # 태스크 관리 시스템 (예정)
+└── projects/                     # 🚀 실전 프로젝트
+    └── bookmark-manager/         # ✅ 북마크 관리 앱
+        ├── src/
+        │   ├── components/      # 컴포넌트 4개
+        │   ├── hooks/           # Custom Hook
+        │   ├── types/           # TypeScript 타입
+        │   ├── utils/           # 유틸리티
+        │   └── App.tsx
+        └── package.json
 ```
+
+---
 
 ## 🚀 시작하기
 
 ### 필수 요구사항
+
 ```bash
 # Node.js & npm
 node --version  # v20.x 이상
 npm --version   # v10.x 이상
-
-# Java
-java --version  # 17 이상
-
-# Python
-python --version  # 3.11 이상
-
-# Docker (선택)
-docker --version
 
 # Git
 git --version
 ```
 
 ### 저장소 클론
+
 ```bash
 git clone https://github.com/hwan0050/git-factory.git
 cd git-factory
 ```
 
-### 학습 영역별 실행
+### 프로젝트 실행
 
-#### 🎨 Frontend (React/Next.js)
+#### 1. React 학습 프로젝트
 ```bash
 cd practices/react/components
 npm install
-npm run dev
+npm start
 ```
 
-#### ☕ Backend (Java/Spring Boot)
+#### 2. 북마크 관리 앱 (통합 프로젝트)
 ```bash
-cd microservices/user-service
-./mvnw clean install
-./mvnw spring-boot:run
+cd projects/bookmark-manager
+npm install
+npm start
 ```
 
-#### 🐍 Backend (Python/FastAPI)
-```bash
-cd practices/python/fastapi
-pip install -r requirements.txt
-uvicorn main:app --reload
-```
+---
 
 ## 📚 학습 로드맵
 
-### Phase 1: 기초 다지기 (1-2개월)
-- [x] Git 기본 명령어 & 브랜치 전략
-- [x] TypeScript 기초 & 타입 시스템
-- [x] React 핵심 개념 (Hooks, Context, State)
+### ✅ Phase 1: 기초 다지기 (완료!)
+
+**학습 기간**: 2024-11-18 ~ 2024-11-22
+
+- [x] **Git 워크플로우** 
+  - Git 기본 명령어, 브랜치 전략
+  - Conflict 해결, Merge vs Rebase
+  - 워크플로우 가이드 작성
+
+- [x] **TypeScript 기초**
+  - 기본 타입, Interface, Type Alias
+  - Generics, Utility Types
+  - Type Guards, 유틸리티 함수
+
+- [x] **React 핵심 개념**
+  - 컴포넌트, Props, State
+  - useState, useEffect Hooks
+  - Custom Hook (useLocalStorage)
+
+- [x] **실전 보강 학습**
+  - React TodoList 개선 (LocalStorage, 필터링, 수정)
+  - TypeScript 개념 강화 (Type Guards, Utility Types, 함수)
+  - Git 워크플로우 연습 (Conflict, Merge, Rebase)
+
+- [x] **통합 미니 프로젝트**
+  - 🔖 북마크 관리 앱 완성
+  - CRUD, 필터링, 검색, 정렬
+  - Git + TypeScript + React 통합
+
+**성과**: 코드 ~4,000줄, PR 4개, 프로젝트 1개
+
+---
+
+### 🔄 Phase 2: 중급 개발 (예정)
+
+**예상 기간**: 2개월
+
 - [ ] Java 기초 & Spring Boot 입문
 - [ ] Python 기초 & FastAPI 입문
-
-### Phase 2: 중급 개발 (2-3개월)
 - [ ] Next.js App Router & Server Components
 - [ ] Spring Boot REST API 설계
 - [ ] JPA/Hibernate 데이터베이스 연동
-- [ ] React Query & 상태 관리
 - [ ] Docker 컨테이너화
-- [ ] TDD & 단위 테스트 작성
+- [ ] TDD & 단위 테스트
 
-### Phase 3: MSA 아키텍처 (3-4개월)
+**목표 프로젝트**: 블로그 플랫폼 (Frontend + Backend)
+
+---
+
+### 🎯 Phase 3: MSA 아키텍처 (예정)
+
+**예상 기간**: 3-4개월
+
 - [ ] Spring Cloud Netflix (Eureka, Gateway)
-- [ ] 마이크로서비스 간 통신 (REST, gRPC)
+- [ ] 마이크로서비스 간 통신
 - [ ] 메시지 큐 (Kafka/RabbitMQ)
 - [ ] 분산 트레이싱 & 로깅
 - [ ] API Gateway 패턴
-- [ ] Circuit Breaker 패턴
 
-### Phase 4: 실전 프로젝트 (진행 중)
-- [ ] 풀스택 프로젝트 설계
-- [ ] CI/CD 파이프라인 구축
-- [ ] 모니터링 & 알림 시스템
-- [ ] 성능 최적화
-- [ ] Kubernetes 배포 (학습 예정)
+**목표 프로젝트**: 이커머스 플랫폼 (MSA)
+
+---
 
 자세한 학습 로드맵: [📖 LEARNING_PATH.md](docs/LEARNING_PATH.md)
 
+---
+
 ## 🔄 Git 워크플로우
 
-이 프로젝트는 체계적인 Git 작업 정책을 따릅니다.
-
 ### 브랜치 전략
+
 ```
-main              - 프로덕션 브랜치 (배포 가능한 상태)
-  └── develop     - 개발 브랜치 (다음 릴리스 준비)
-       ├── feature/java-spring-basic      - 기능 개발
-       ├── feature/react-custom-hooks     - 기능 개발
-       └── fix/typo-in-readme            - 버그 수정
+main - 프로덕션 브랜치 (안정 버전)
+ └── develop - 개발 브랜치 (다음 릴리스)
+      ├── feature/bookmark-manager      # 기능 개발
+      ├── feature/typescript-utilities  # 기능 개발
+      └── fix/typo-in-readme           # 버그 수정
 ```
 
 ### 커밋 메시지 규칙
+
 ```bash
 feat: 새로운 기능 추가
 fix: 버그 수정
 docs: 문서 수정
-style: 코드 포맷팅 (기능 변경 없음)
+style: 코드 포맷팅
 refactor: 코드 리팩토링
-test: 테스트 코드 추가/수정
+test: 테스트 코드
 chore: 빌드, 설정 파일 수정
 ```
 
 **예시:**
 ```bash
-git commit -m "feat: Add Spring Boot user authentication service"
-git commit -m "docs: Update MSA architecture guide"
-git commit -m "fix: Resolve TypeScript type error in React component"
+git commit -m "feat: Add bookmark manager app with CRUD functionality"
+git commit -m "docs: Update README with Phase 1 completion"
+git commit -m "fix: Resolve TypeScript type error in BookmarkForm"
 ```
 
-📖 자세한 내용: [Git 작업 정책](docs/GIT_WORKFLOW.md)
+📖 자세한 내용: [Git 워크플로우 가이드](workflows/git-practice/GIT_WORKFLOW_GUIDE.md)
+
+---
+
+## 🎓 완성 프로젝트
+
+### 🔖 북마크 관리 앱
+
+**기술**: React + TypeScript + LocalStorage
+
+**주요 기능**:
+- ✅ CRUD (추가, 조회, 수정, 삭제)
+- ✅ 카테고리 분류 (6종)
+- ✅ 즐겨찾기
+- ✅ 태그 시스템
+- ✅ 검색 & 필터링
+- ✅ 정렬 (최신순, 오래된순, 제목순)
+- ✅ LocalStorage 영구 저장
+- ✅ 통계 대시보드
+
+**실행 방법**:
+```bash
+cd projects/bookmark-manager
+npm install
+npm start
+```
+
+**관련 PR**: [#11](https://github.com/hwan0050/git-factory/pull/11)
+
+---
 
 ## 🤝 기여하기
 
@@ -261,59 +311,78 @@ git commit -m "fix: Resolve TypeScript type error in React component"
 
 자세한 가이드: [CONTRIBUTING.md](CONTRIBUTING.md)
 
-## 📝 학습 기록
+---
 
-### 진행 중인 학습
-- 🔄 Java Spring Boot 기초 학습 예정
-- 🔄 Python FastAPI 학습 예정
+## 📊 현재 진행 상황
 
-### 완료한 학습
-- ✅ **Git 기본 명령어 마스터** (2024-11-18)
-  - 브랜치 생성, 병합, Conflict 해결
-  - Pull Request 작성 및 코드 리뷰
-  - Git Flow 워크플로우 실습
+### ✅ 완료
+- Git 기본 명령어 마스터
+- TypeScript 타입 시스템 완벽 이해
+- React Hooks 자유자재로 사용
+- Custom Hook 구현 및 재사용
+- 실전 CRUD 앱 개발
 
-- ✅ **TypeScript 기초 완료** (2024-11-18)
-  - 기본 타입 (Primitive, Array, Tuple, Enum)
-  - 인터페이스 (정의, 확장, 구현)
-  - 제네릭 (함수, 클래스, 제약조건)
-  - 유틸리티 타입 (Partial, Pick, Omit)
-  - 학습 시간: 4시간
+### 🔄 진행 중
+- Phase 2 준비 중
 
-- ✅ **React 기초 완료** (2024-11-18)
-  - JSX 문법 및 컴포넌트 작성
-  - Props 타입 정의 및 전달
-  - useState로 상태 관리 (Counter, TodoList)
-  - useEffect로 Side Effect 처리 (Timer, API, Events)
-  - TypeScript와 React 조합
-  - 학습 시간: 4.5시간
-
-- ✅ Docker 기초 개념 이해
-- ✅ REST API 설계 원칙
-
-**총 학습 시간: 10.5시간**
-
-## 🔗 유용한 링크
-
-- [Spring Boot 공식 문서](https://spring.io/projects/spring-boot)
-- [React 공식 문서](https://react.dev)
-- [Next.js 공식 문서](https://nextjs.org/docs)
-- [TypeScript 핸드북](https://www.typescriptlang.org/docs/)
-- [FastAPI 공식 문서](https://fastapi.tiangolo.com)
-- [Martin Fowler - Microservices](https://martinfowler.com/articles/microservices.html)
-
-## 📄 라이선스
-
-이 프로젝트는 MIT 라이선스를 따릅니다. 자세한 내용은 [LICENSE](LICENSE) 파일을 참조하세요.
-
-## 👨‍💻 작성자
-
-**Hwan Lee**
-- GitHub: [@hwan0050](https://github.com/hwan0050)
-- Email: akma0050@naver.com
+### 📅 예정
+- Spring Boot 백엔드 개발
+- FastAPI 학습
+- Docker 컨테이너화
+- MSA 아키텍처 구현
 
 ---
 
-⭐ 이 프로젝트가 도움이 되셨다면 Star를 눌러주세요! ⭐
+## 📖 참고 자료
 
-**Made with ❤️ for Learning**
+### 공식 문서
+- [React 공식 문서](https://react.dev)
+- [TypeScript 핸드북](https://www.typescriptlang.org/docs/)
+- [Spring Boot 공식 문서](https://spring.io/projects/spring-boot)
+- [FastAPI 공식 문서](https://fastapi.tiangolo.com)
+
+### 추천 자료
+- [Git 브랜치 전략](workflows/git-practice/GIT_WORKFLOW_GUIDE.md)
+- [Martin Fowler - Microservices](https://martinfowler.com/articles/microservices.html)
+
+---
+
+## 📜 라이선스
+
+이 프로젝트는 MIT 라이선스를 따릅니다. 자세한 내용은 [LICENSE](LICENSE) 파일을 참조하세요.
+
+---
+
+## 👤 만든이
+
+**Hwan Lee**
+
+- GitHub: [@hwan0050](https://github.com/hwan0050)
+- Email: [akma0050@naver.com](mailto:akma0050@naver.com)
+
+---
+
+## ⭐ Star History
+
+이 프로젝트가 도움이 되셨다면 Star를 눌러주세요! ⭐
+
+---
+
+## 📝 업데이트 로그
+
+### 2024-11-22 - Phase 1 완료! 🎉
+- ✅ Git 워크플로우 학습 완료
+- ✅ TypeScript 기초 & 고급 개념 완료
+- ✅ React 기초 & 실전 연습 완료
+- ✅ 북마크 관리 앱 프로젝트 완성
+- 📊 총 4,000줄 코드, 4개 PR, 1개 완성 프로젝트
+
+### 2024-11-18 - 프로젝트 시작
+- 🎯 Git Factory 저장소 생성
+- 📚 학습 로드맵 수립
+
+---
+
+<p align="center">
+  Made with ❤️ for Learning
+</p>
