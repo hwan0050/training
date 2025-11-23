@@ -1,4 +1,4 @@
-export default function BlogPage() {
+﻿export default function BlogPage() {
   return (
     <div>
       <h2 className="text-3xl font-bold mb-6">Welcome to My Blog</h2>

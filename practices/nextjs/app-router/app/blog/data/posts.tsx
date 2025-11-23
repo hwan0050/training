@@ -75,3 +75,33 @@ export function getPostById(id: string): Post | undefined {
 export function getAllPostIds(): string[] {
   return posts.map((post) => post.id);
 }
+
+// 비동기 데이터 페칭 시뮬레이션 (느린 API 호출)
+export async function getPostByIdAsync(id: string): Promise<Post | undefined> {
+  // 2초 지연 (로딩 상태 확인용)
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+  return posts.find((post) => post.id === id);
+}
+
+// 모든 포스트 비동기로 가져오기
+export async function getPostsAsync(): Promise<Post[]> {
+  // 1.5초 지연
+  await new Promise((resolve) => setTimeout(resolve, 1500));
+  return posts;
+}
+
+// 에러를 발생시키는 함수 (에러 핸들링 테스트용)
+export async function getPostByIdWithError(id: string): Promise<Post> {
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+  
+  if (id === 'error') {
+    throw new Error('포스트를 불러오는 중 에러가 발생했습니다!');
+  }
+  
+  const post = posts.find((post) => post.id === id);
+  if (!post) {
+    throw new Error('포스트를 찾을 수 없습니다.');
+  }
+  
+  return post;
+}

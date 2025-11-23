@@ -1,15 +1,18 @@
 import Link from 'next/link';
-import { posts } from '../data/posts';
+import { getPostsAsync } from '../data/posts.tsx';
 
-export default function PostsPage() {
+export default async function PostsPage() {
+  // 비동기 데이터 페칭 (1.5초 지연)
+  const posts = await getPostsAsync();
+  
   return (
     <div>
       <h2 className="text-3xl font-bold mb-6">📚 Blog Posts</h2>
       
       <div className="bg-yellow-50 border-2 border-yellow-200 p-4 rounded-lg mb-6">
         <p className="text-yellow-800">
-          💡 <strong>Tip:</strong> 각 포스트를 클릭하면 동적 라우팅으로 
-          개별 포스트 페이지(/blog/posts/[id])로 이동합니다!
+          💡 <strong>Tip:</strong> 이 페이지는 loading.tsx를 통해 로딩 상태를 표시합니다. 
+          새로고침하면 스켈레톤 UI를 볼 수 있습니다!
         </p>
       </div>
 

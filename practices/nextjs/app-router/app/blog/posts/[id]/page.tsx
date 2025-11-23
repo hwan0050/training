@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getPostById, getAllPostIds } from '../../data/posts';
+import { getPostByIdAsync, getAllPostIds } from '../../data/posts.tsx';  // .tsx 추가
 
 // 정적 생성을 위한 params 미리 생성
 export async function generateStaticParams() {
@@ -18,7 +18,7 @@ export async function generateMetadata({
   params: Promise<{ id: string }> 
 }) {
   const { id } = await params;
-  const post = getPostById(id);
+  const post = await getPostByIdAsync(id);
   
   if (!post) {
     return {
@@ -37,13 +37,11 @@ export default async function PostDetailPage({
 }: { 
   params: Promise<{ id: string }> 
 }) {
-  // params를 await로 풀어야 함
   const { id } = await params;
   
-  // Server Component에서 데이터 페칭
-  const post = getPostById(id);
+  // 비동기 데이터 페칭 (2초 지연)
+  const post = await getPostByIdAsync(id);
   
-  // 포스트가 없으면 404 페이지로
   if (!post) {
     notFound();
   }
@@ -91,26 +89,23 @@ export default async function PostDetailPage({
       {/* Learning Points */}
       <div className="mt-8 bg-blue-50 border-2 border-blue-200 p-6 rounded-lg">
         <h3 className="text-xl font-bold text-blue-700 mb-3">
-          🎯 Dynamic Routes 학습 포인트
+          🎯 Loading & Error Handling 학습 포인트
         </h3>
         <ul className="space-y-2 text-gray-700">
           <li>
-            ✅ <strong>동적 경로:</strong> [id] 폴더로 동적 세그먼트 생성
+            ✅ <strong>loading.tsx:</strong> 자동 로딩 UI (Suspense 기반)
           </li>
           <li>
-            ✅ <strong>params 접근:</strong> await params로 URL 파라미터 사용 (Next.js 15+)
+            ✅ <strong>error.tsx:</strong> 자동 Error Boundary
           </li>
           <li>
-            ✅ <strong>generateStaticParams:</strong> 빌드 시 정적 페이지 미리 생성
+            ✅ <strong>비동기 Server Component:</strong> async/await로 데이터 페칭
           </li>
           <li>
-            ✅ <strong>Server Component 데이터 페칭:</strong> 직접 데이터 접근
+            ✅ <strong>Streaming:</strong> 준비된 부분부터 점진적 렌더링
           </li>
           <li>
-            ✅ <strong>notFound():</strong> 존재하지 않는 페이지 처리
-          </li>
-          <li>
-            ✅ <strong>generateMetadata:</strong> 동적 메타데이터 생성
+            ✅ <strong>사용자 경험:</strong> 로딩 상태와 에러 처리로 UX 향상
           </li>
         </ul>
       </div>
