@@ -5,7 +5,6 @@
 ## 🎯 학습 목표
 
 이 로드맵은 **풀스택 개발자**이자 **MSA 아키텍트**로 성장하기 위한 단계별 가이드입니다.
-
 ```
 Junior Developer
        ↓
@@ -19,7 +18,7 @@ MSA Architect (12-18개월)
 ## 📋 목차
 
 - [Phase 1: 기초 다지기](#phase-1-기초-다지기-완료) ✅
-- [Phase 2: 중급 개발](#phase-2-중급-개발-예정)
+- [Phase 2: 중급 개발](#phase-2-중급-개발-진행-중) 🔄
 - [Phase 3: MSA 아키텍처](#phase-3-msa-아키텍처-예정)
 - [Phase 4: 실전 프로젝트](#phase-4-실전-프로젝트-예정)
 
@@ -419,86 +418,175 @@ projects/bookmark-manager/
 
 ---
 
-## Phase 2: 중급 개발 (예정)
+## Phase 2: 중급 개발 (진행 중)
 
-**예상 기간**: 2개월
+**시작일**: 2025-11-23  
+**예상 완료**: 2026-01
 
-### 🎓 학습 목표
+### 🎓 Phase 2 학습 목표
 - Next.js로 SSR/SSG 구현
 - Spring Boot 심화 (JPA, Security)
 - 데이터베이스 설계 및 최적화
 - 테스트 주도 개발 (TDD)
 - Docker 컨테이너화
 
-### Week 11-13: Next.js App Router
+---
+
+### ✅ Phase 2-1: Next.js 14 App Router (완료!)
+
+**학습 기간**: 2025-11-23 (1일)  
+**총 학습 시간**: 약 4-5시간  
+**완성 코드**: ~800줄  
+**완료 커밋**: 6개
+
+#### 🎓 학습 목표
+- ✅ Next.js 14 App Router 핵심 개념 이해
+- ✅ Server Components와 Client Components 구분
+- ✅ 파일 기반 라우팅 및 동적 라우팅 구현
+- ✅ Loading States와 Error Handling 패턴 학습
 
 #### 학습 내용
-- [ ] Next.js 13+ App Router
-- [ ] Server Components vs Client Components
-- [ ] Data Fetching (Server-side)
-- [ ] Dynamic Routes
-- [ ] Metadata API
-- [ ] API Routes
+- [x] Next.js 14 프로젝트 초기화 (TypeScript + Tailwind CSS)
+- [x] App Router 파일 기반 라우팅
+- [x] Server Components (기본값)
+- [x] Client Components ("use client" 지시어)
+- [x] Layouts & Nested Routes
+- [x] Dynamic Routes ([id])
+- [x] Data Fetching (async Server Components)
+- [x] Loading UI (loading.tsx)
+- [x] Error Boundary (error.tsx)
+- [x] 404 페이지 (not-found.tsx)
+- [x] generateStaticParams로 정적 생성
+- [x] generateMetadata로 동적 메타데이터
 
-#### 실습 과제
+#### 실습 과제 완료 ✅
 ```typescript
-// practices/nextjs/app-router/app/users/page.tsx
+// Module 1: 기본 라우팅
+app/about/page.tsx → /about
 
-// Server Component (기본)
-export default async function UsersPage() {
-  // 서버에서 데이터 페칭
-  const users = await fetch('https://api.example.com/users', {
-    cache: 'no-store' // 항상 최신 데이터
-  }).then(res => res.json());
+// Module 2: Server vs Client Components
+app/components/ServerInfo.tsx    // Server Component
+app/components/Counter.tsx       // Client Component ('use client')
 
-  return (
-    <div>
-      <h1>Users</h1>
-      <UserList users={users} />
-    </div>
-  );
-}
+// Module 3: Layouts
+app/blog/layout.tsx              // Blog Layout (Header + Footer)
+app/blog/page.tsx → /blog
+app/blog/posts/page.tsx → /blog/posts
 
-// practices/nextjs/app-router/app/users/[id]/page.tsx
+// Module 4: Dynamic Routes
+app/blog/posts/[id]/page.tsx → /blog/posts/1
+- generateStaticParams()
+- async params handling (Next.js 15)
 
-// Dynamic Route
-export default async function UserDetailPage({ 
-  params 
-}: { 
-  params: { id: string } 
-}) {
-  const user = await fetch(`https://api.example.com/users/${params.id}`)
-    .then(res => res.json());
-
-  return (
-    <div>
-      <h1>{user.name}</h1>
-      <p>{user.email}</p>
-    </div>
-  );
-}
-
-// Metadata
-export async function generateMetadata({ params }: { params: { id: string } }) {
-  const user = await fetch(`https://api.example.com/users/${params.id}`)
-    .then(res => res.json());
-  
-  return {
-    title: user.name,
-    description: `Profile of ${user.name}`
-  };
-}
+// Module 5: Loading & Error
+app/blog/posts/loading.tsx       // Skeleton UI
+app/blog/posts/[id]/loading.tsx
+app/blog/posts/[id]/error.tsx    // Error Boundary
+app/blog/posts/[id]/not-found.tsx
 ```
 
+#### 프로젝트 구조
+```
+practices/nextjs/app-router/
+├── app/
+│   ├── page.tsx                  # 메인 페이지
+│   ├── about/page.tsx            # About 페이지
+│   ├── components/
+│   │   ├── ServerInfo.tsx        # Server Component
+│   │   └── Counter.tsx           # Client Component
+│   ├── components-demo/page.tsx  # Components 비교
+│   └── blog/
+│       ├── layout.tsx            # Blog Layout
+│       ├── page.tsx              # Blog 홈
+│       ├── data/posts.ts         # Mock 데이터
+│       ├── posts/
+│       │   ├── loading.tsx       # 로딩 UI
+│       │   ├── page.tsx          # 포스트 목록
+│       │   └── [id]/
+│       │       ├── loading.tsx
+│       │       ├── error.tsx
+│       │       ├── not-found.tsx
+│       │       └── page.tsx      # 포스트 상세
+│       └── about/page.tsx
+└── package.json
+```
+
+#### 학습 통합
+```
+✅ Git 워크플로우
+   - Feature 브랜치: feature/nextjs-app-router
+   - 6개 커밋 (모듈별 커밋)
+   - Conventional Commits
+
+✅ TypeScript
+   - Interface (Post, Props)
+   - Type Safety (params: Promise<{ id: string }>)
+   - Async/Await
+
+✅ React
+   - Server Components (기본값)
+   - Client Components ('use client')
+   - useState Hook
+   - 컴포넌트 구조화
+```
+
+#### 핵심 개념 정리
+
+**1. Server Components (기본값)**
+- 서버에서만 렌더링
+- 번들 크기 0
+- async/await로 데이터 페칭
+- 데이터베이스 직접 접근 가능
+
+**2. Client Components**
+- 'use client' 지시어 필요
+- useState, useEffect 사용
+- 이벤트 핸들러
+- 브라우저 API
+
+**3. 파일 기반 라우팅**
+- page.tsx: 경로 UI
+- layout.tsx: 공통 레이아웃
+- loading.tsx: 로딩 UI (Suspense)
+- error.tsx: Error Boundary
+- not-found.tsx: 404 페이지
+- [param]: 동적 세그먼트
+
+**4. Next.js 15 변경사항**
+- params가 Promise로 변경
+- `const { id } = await params` 필요
+
 #### 체크포인트
-- [ ] Next.js 프로젝트 생성 및 실행
-- [ ] Server Component와 Client Component 구분
-- [ ] SSR/SSG 구현
-- [ ] Dynamic Routes 생성
+- [x] Next.js 프로젝트 생성 및 실행 ✅
+- [x] Server Component와 Client Component 구분 ✅
+- [x] 파일 기반 라우팅 이해 ✅
+- [x] Dynamic Routes 구현 ✅
+- [x] Layout 시스템 활용 ✅
+- [x] Loading/Error Handling ✅
+
+#### 완료 결과물
+- ✅ **커밋 6개**: feature/nextjs-app-router 브랜치
+- 📄 **학습 노트**: [NEXTJS_LEARNING.md](../practices/nextjs/NEXTJS_LEARNING.md)
+- 📄 **핸드오버**: [PHASE2-1_HANDOVER.md](../practices/nextjs/PHASE2-1_HANDOVER.md)
+- 📊 **코드량**: ~800줄
+- 📁 **파일**: 15개
+
+#### 트러블슈팅
+**Issue 1**: Module Resolution 에러
+- **원인**: Next.js 개발 서버 캐시 문제
+- **해결**: 서버 재시작, 포트 프로세스 종료
+
+**Issue 2**: params 타입 에러
+- **원인**: Next.js 15에서 params가 Promise로 변경
+- **해결**: `const { id } = await params`
+
+**✅ Phase 2-1 완료! (2025-11-23)**
 
 ---
 
-### Week 14-16: Spring Boot & JPA
+### 📋 Phase 2-2: Spring Boot 3.x + JPA (예정)
+
+**예상 기간**: 1주일
 
 #### 학습 내용
 - [ ] Spring Boot 프로젝트 생성
@@ -506,44 +594,58 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
 - [ ] Repository 패턴
 - [ ] Service Layer 구현
 - [ ] 연관 관계 매핑 (1:N, N:M)
+- [ ] REST API 설계
+
+#### 실습 과제
+```java
+// Entity 설계
+@Entity
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    private String email;
+    private String name;
+    
+    @OneToMany(mappedBy = "user")
+    private List<Post> posts;
+}
+
+// Repository
+public interface UserRepository extends JpaRepository<User, Long> {
+    Optional<User> findByEmail(String email);
+}
+
+// Service
+@Service
+public class UserService {
+    private final UserRepository userRepository;
+    
+    public UserDTO createUser(CreateUserRequest request) {
+        // 구현
+    }
+}
+
+// Controller
+@RestController
+@RequestMapping("/api/users")
+public class UserController {
+    // REST API 구현
+}
+```
 
 #### 체크포인트
 - [ ] JPA로 CRUD 구현
 - [ ] 연관 관계 이해
 - [ ] 쿼리 메서드 작성
+- [ ] REST API 설계
 
 ---
 
-### Week 17-19: Spring Security & JWT
+### 📋 Phase 2-3: Docker 컨테이너화 (예정)
 
-#### 학습 내용
-- [ ] Spring Security 설정
-- [ ] JWT 토큰 생성 및 검증
-- [ ] 인증/인가 구현
-- [ ] Role 기반 접근 제어
-
-#### 체크포인트
-- [ ] JWT 인증 구현
-- [ ] Role 기반 권한 관리
-- [ ] Security Filter Chain 이해
-
----
-
-### Week 20-22: 테스트 주도 개발 (TDD)
-
-#### 학습 내용
-- [ ] 단위 테스트 (JUnit 5)
-- [ ] Mocking (Mockito)
-- [ ] 통합 테스트
-- [ ] Test Coverage
-
-#### 체크포인트
-- [ ] TDD 사이클 실천
-- [ ] Coverage 80% 이상
-
----
-
-### Week 23-24: Docker & 컨테이너화
+**예상 기간**: 3-4일
 
 #### 학습 내용
 - [ ] Docker 개념 및 설치
@@ -557,7 +659,23 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
 
 ---
 
-### Phase 2 총정리 프로젝트
+### 📋 Phase 2-4: TDD & 테스트 (예정)
+
+**예상 기간**: 3-4일
+
+#### 학습 내용
+- [ ] 단위 테스트 (Jest, JUnit)
+- [ ] Mocking
+- [ ] 통합 테스트
+- [ ] Test Coverage
+
+#### 체크포인트
+- [ ] TDD 사이클 실천
+- [ ] Coverage 80% 이상
+
+---
+
+### Phase 2 총정리 프로젝트 (예정)
 
 **프로젝트: 블로그 플랫폼**
 ```
@@ -657,7 +775,8 @@ Technology:
 - [x] TypeScript 타입 시스템 숙달
 - [x] React Hooks 자유자재로 사용
 - [x] Custom Hook 구현 및 재사용
-- [ ] Next.js SSR/SSG 구현 가능
+- [x] Next.js App Router 이해 ✅
+- [x] Server Components vs Client Components ✅
 - [ ] 상태 관리 (Zustand/Recoil) 이해
 
 #### Backend
@@ -683,11 +802,11 @@ Technology:
 
 ## 🎯 다음 단계
 
-Phase 1 완료 후:
-1. ✅ 통합 프로젝트 완성 (북마크 관리 앱)
-2. ✅ 문서 업데이트
-3. 🔜 Phase 2 준비
-4. 🔜 Spring Boot 학습 시작
+Phase 2-1 완료 후:
+1. ✅ Next.js App Router 학습 완료
+2. ✅ 학습 노트 및 핸드오버 문서 작성
+3. 🔜 Phase 2-2 준비: Spring Boot + JPA
+4. 🔜 백엔드 개발 시작
 
 ---
 
@@ -707,14 +826,21 @@ Phase 1 완료 후:
 ### 블로그 & 문서
 - [Spring.io Blog](https://spring.io/blog)
 - [React.dev](https://react.dev)
+- [Next.js Docs](https://nextjs.org/docs)
 - [Martin Fowler Blog](https://martinfowler.com)
 
 ---
 
-## 🏆 Phase 1 달성 완료!
+## 🏆 현재 달성 현황
 
+### Phase 1 완료! ✅ (2024-11-22)
 **기간**: 2024-11-18 ~ 2024-11-22 (5일)  
 **성과**: Git + TypeScript + React 완벽 마스터  
-**결과물**: 실사용 가능한 북마크 관리 앱  
+**결과물**: 실사용 가능한 북마크 관리 앱
+
+### Phase 2-1 완료! ✅ (2025-11-23)
+**기간**: 2025-11-23 (1일)  
+**성과**: Next.js 14 App Router 마스터  
+**결과물**: Blog 예제 프로젝트 (15개 파일, 800줄)
 
 **학습은 여정입니다. 꾸준히 나아가세요! 🚀**
