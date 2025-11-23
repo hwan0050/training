@@ -60,10 +60,10 @@ Git Factory는 **현대적인 웹 개발 기술과 MSA(Microservices Architectur
 ## 🛠️ 기술 스택
 
 ### Frontend
-- **React 18+** - UI 라이브러리
-- **TypeScript 5+** - 타입 안전성
-- **Next.js 14+** - React 프레임워크 (App Router) *[예정]*
-- **Tailwind CSS** - 스타일링 *[예정]*
+- **React 18+** - UI 라이브러리 ✅
+- **TypeScript 5+** - 타입 안전성 ✅
+- **Next.js 14+** - React 프레임워크 (App Router) ✅
+- **Tailwind CSS** - 스타일링 ✅
 
 ### Backend
 - **Java 17+** - Spring Boot 3.x *[예정]*
@@ -83,7 +83,6 @@ Git Factory는 **현대적인 웹 개발 기술과 MSA(Microservices Architectur
 ---
 
 ## 📂 프로젝트 구조
-
 ```
 git-factory/
 ├── README.md                      # 프로젝트 소개
@@ -111,6 +110,11 @@ git-factory/
 │   │       │   └── ...
 │   │       └── package.json
 │   │
+│   ├── nextjs/                   # ✅ Next.js 실습
+│   │   ├── app-router/          # App Router 학습
+│   │   ├── NEXTJS_LEARNING.md   # 학습 노트
+│   │   └── PHASE2-1_HANDOVER.md # 핸드오버 문서
+│   │
 │   └── typescript/               # ✅ TypeScript 실습
 │       └── utilities/            # TypeScript 유틸리티
 │           ├── type-guards.ts   # Type Guard 20개
@@ -133,7 +137,6 @@ git-factory/
 ## 🚀 시작하기
 
 ### 필수 요구사항
-
 ```bash
 # Node.js & npm
 node --version  # v20.x 이상
@@ -144,7 +147,6 @@ git --version
 ```
 
 ### 저장소 클론
-
 ```bash
 git clone https://github.com/hwan0050/git-factory.git
 cd git-factory
@@ -159,7 +161,14 @@ npm install
 npm start
 ```
 
-#### 2. 북마크 관리 앱 (통합 프로젝트)
+#### 2. Next.js App Router 학습
+```bash
+cd practices/nextjs/app-router
+npm install
+npm run dev
+```
+
+#### 3. 북마크 관리 앱 (통합 프로젝트)
 ```bash
 cd projects/bookmark-manager
 npm install
@@ -203,19 +212,41 @@ npm start
 
 ---
 
-### 🔄 Phase 2: 중급 개발 (예정)
+### 🔄 Phase 2: 중급 개발 (진행 중)
 
-**예상 기간**: 2개월
+**시작일**: 2025-11-23
 
-- [ ] Java 기초 & Spring Boot 입문
-- [ ] Python 기초 & FastAPI 입문
-- [ ] Next.js App Router & Server Components
-- [ ] Spring Boot REST API 설계
-- [ ] JPA/Hibernate 데이터베이스 연동
-- [ ] Docker 컨테이너화
-- [ ] TDD & 단위 테스트
+#### ✅ Phase 2-1: Next.js 14 App Router (완료 2025-11-23)
+- [x] Next.js 프로젝트 초기화 (TypeScript + Tailwind CSS)
+- [x] App Router 파일 기반 라우팅
+- [x] Server Components vs Client Components
+- [x] Layouts & Nested Routes
+- [x] Dynamic Routes & Data Fetching
+- [x] Loading States & Error Handling
 
-**목표 프로젝트**: 블로그 플랫폼 (Frontend + Backend)
+**성과**: 코드 ~800줄, 커밋 6개, 파일 15개
+
+📝 **학습 자료**:
+- [Next.js 학습 노트](./practices/nextjs/NEXTJS_LEARNING.md)
+- [Phase 2-1 핸드오버 문서](./practices/nextjs/PHASE2-1_HANDOVER.md)
+
+#### 📋 Phase 2-2: Spring Boot 3.x + JPA (예정)
+- Spring Boot 프로젝트 초기화
+- REST API 설계 및 구현
+- JPA/Hibernate 데이터베이스 연동
+- CRUD 작업 구현
+
+#### 📋 Phase 2-3: Docker 컨테이너화 (예정)
+- Dockerfile 작성
+- Docker Compose 구성
+- 개발 환경 컨테이너화
+
+#### 📋 Phase 2-4: TDD & 테스트 (예정)
+- Jest 설정
+- React Testing Library
+- 단위 테스트 작성
+
+**예상 완료**: 2026-01
 
 ---
 
@@ -240,17 +271,16 @@ npm start
 ## 🔄 Git 워크플로우
 
 ### 브랜치 전략
-
 ```
 main - 프로덕션 브랜치 (안정 버전)
  └── develop - 개발 브랜치 (다음 릴리스)
-      ├── feature/bookmark-manager      # 기능 개발
-      ├── feature/typescript-utilities  # 기능 개발
-      └── fix/typo-in-readme           # 버그 수정
+      ├── feature/nextjs-app-router      # 기능 개발 (진행 중)
+      ├── feature/bookmark-manager       # 기능 개발 (완료)
+      ├── feature/typescript-utilities   # 기능 개발 (완료)
+      └── fix/typo-in-readme            # 버그 수정
 ```
 
 ### 커밋 메시지 규칙
-
 ```bash
 feat: 새로운 기능 추가
 fix: 버그 수정
@@ -264,7 +294,8 @@ chore: 빌드, 설정 파일 수정
 **예시:**
 ```bash
 git commit -m "feat: Add bookmark manager app with CRUD functionality"
-git commit -m "docs: Update README with Phase 1 completion"
+git commit -m "feat: Implement Next.js App Router with dynamic routes"
+git commit -m "docs: Update README with Phase 2-1 completion"
 git commit -m "fix: Resolve TypeScript type error in BookmarkForm"
 ```
 
@@ -274,7 +305,7 @@ git commit -m "fix: Resolve TypeScript type error in BookmarkForm"
 
 ## 🎓 완성 프로젝트
 
-### 🔖 북마크 관리 앱
+### 🔖 북마크 관리 앱 (Phase 1)
 
 **기술**: React + TypeScript + LocalStorage
 
@@ -299,6 +330,28 @@ npm start
 
 ---
 
+### 📝 Next.js Blog (Phase 2-1)
+
+**기술**: Next.js 14 + TypeScript + Tailwind CSS
+
+**주요 기능**:
+- ✅ App Router 파일 기반 라우팅
+- ✅ Server Components & Client Components 구분
+- ✅ Dynamic Routes (`/blog/posts/[id]`)
+- ✅ Layouts & Nested Routes
+- ✅ Loading UI (Skeleton)
+- ✅ Error Boundary
+- ✅ 404 페이지
+
+**실행 방법**:
+```bash
+cd practices/nextjs/app-router
+npm install
+npm run dev
+```
+
+---
+
 ## 🤝 기여하기
 
 이 프로젝트는 학습 목적이지만 기여를 환영합니다!
@@ -315,20 +368,41 @@ npm start
 
 ## 📊 현재 진행 상황
 
-### ✅ 완료
+### ✅ Phase 1 완료 (2024-11-22)
 - Git 기본 명령어 마스터
 - TypeScript 타입 시스템 완벽 이해
 - React Hooks 자유자재로 사용
 - Custom Hook 구현 및 재사용
-- 실전 CRUD 앱 개발
+- 실전 CRUD 앱 개발 (북마크 관리 앱)
 
-### 🔄 진행 중
-- Phase 2 준비 중
+### 🔄 Phase 2 진행 중 (2025-11-23~)
+
+#### ✅ Phase 2-1: Next.js 14 App Router (완료 2025-11-23)
+- ✅ Next.js 프로젝트 초기화 (TypeScript + Tailwind)
+- ✅ App Router 파일 기반 라우팅 학습
+- ✅ Server Components vs Client Components 구현
+- ✅ Layouts & Nested Routes 실습
+- ✅ Dynamic Routes & Data Fetching
+- ✅ Loading States & Error Handling
+- 📝 [학습 노트](./practices/nextjs/NEXTJS_LEARNING.md) | [핸드오버 문서](./practices/nextjs/PHASE2-1_HANDOVER.md)
+
+#### 📋 Phase 2-2: Spring Boot 3.x + JPA (예정)
+- Spring Boot 프로젝트 초기화
+- REST API 설계 및 구현
+- JPA/Hibernate 데이터베이스 연동
+
+#### 📋 Phase 2-3: Docker 컨테이너화 (예정)
+- Dockerfile 작성
+- Docker Compose 구성
+
+#### 📋 Phase 2-4: TDD & 테스트 (예정)
+- Jest 설정
+- 단위 테스트 작성
 
 ### 📅 예정
 - Spring Boot 백엔드 개발
-- FastAPI 학습
 - Docker 컨테이너화
+- TDD & 테스트
 - MSA 아키텍처 구현
 
 ---
@@ -337,6 +411,7 @@ npm start
 
 ### 공식 문서
 - [React 공식 문서](https://react.dev)
+- [Next.js 공식 문서](https://nextjs.org/docs)
 - [TypeScript 핸드북](https://www.typescriptlang.org/docs/)
 - [Spring Boot 공식 문서](https://spring.io/projects/spring-boot)
 - [FastAPI 공식 문서](https://fastapi.tiangolo.com)
@@ -369,6 +444,13 @@ npm start
 ---
 
 ## 📝 업데이트 로그
+
+### 2025-11-23 - Phase 2-1 완료! 🎉
+- ✅ Next.js 14 App Router 학습 완료
+- ✅ Server/Client Components 구분 학습
+- ✅ Dynamic Routes & Data Fetching 구현
+- ✅ Loading/Error Handling 패턴 학습
+- 📊 총 800줄 코드, 6개 커밋, 15개 파일
 
 ### 2024-11-22 - Phase 1 완료! 🎉
 - ✅ Git 워크플로우 학습 완료
