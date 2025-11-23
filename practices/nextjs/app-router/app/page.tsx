@@ -12,7 +12,7 @@ export default function Home() {
           Phase 2-1: Next.js App Router 기본 구조 이해하기
         </p>
         
-        <div className="flex gap-4 justify-center mb-8">
+        <div className="flex gap-4 justify-center mb-8 flex-wrap">
           <Link 
             href="/about"
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors"
@@ -26,6 +26,13 @@ export default function Home() {
           >
             Components Demo →
           </Link>
+          
+          <Link 
+            href="/blog"
+            className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded transition-colors"
+          >
+            Blog (Layouts) →
+          </Link>
         </div>
 
         <div className="mt-12 text-left bg-gray-50 p-6 rounded-lg">
@@ -33,6 +40,7 @@ export default function Home() {
           <ul className="space-y-2 text-gray-700">
             <li>✅ App Router 파일 기반 라우팅</li>
             <li>✅ Server Components vs Client Components</li>
+            <li>✅ Layouts & Nested Routes</li>
             <li>✅ Next.js Link 컴포넌트</li>
             <li>✅ Tailwind CSS 스타일링</li>
           </ul>
