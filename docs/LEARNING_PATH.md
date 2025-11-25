@@ -584,62 +584,164 @@ practices/nextjs/app-router/
 
 ---
 
-### 📋 Phase 2-2: Spring Boot 3.x + JPA (예정)
+### ✅ Phase 2-2: Spring Boot 3.x + JPA (완료!)
 
-**예상 기간**: 1주일
+**학습 기간**: 2025-11-25 (1일)  
+**총 학습 시간**: 약 3-4시간  
+**완성 코드**: ~350줄  
+**완료 커밋**: 3개
+
+#### 🎓 학습 목표
+- ✅ Spring Boot 프로젝트 구조 이해
+- ✅ JPA Entity 및 Repository 패턴 학습
+- ✅ REST API 설계 및 구현
+- ✅ 계층형 아키텍처 (Controller-Service-Repository) 이해
 
 #### 학습 내용
-- [ ] Spring Boot 프로젝트 생성
-- [ ] JPA Entity 설계
-- [ ] Repository 패턴
-- [ ] Service Layer 구현
-- [ ] 연관 관계 매핑 (1:N, N:M)
-- [ ] REST API 설계
+- [x] Spring Boot 3.4.0 프로젝트 초기화 (Java 17 + Gradle)
+- [x] JPA Entity 설계 (@Entity, @Table, @Column)
+- [x] JPA Auditing (@CreatedDate, @LastModifiedDate)
+- [x] Repository 인터페이스 (JpaRepository 상속)
+- [x] 쿼리 메서드 (Query Method) 구현
+- [x] Service 계층 (비즈니스 로직, @Transactional)
+- [x] DTO 패턴 (PostRequest, PostResponse)
+- [x] REST Controller (@RestController, HTTP 메서드 매핑)
+- [x] H2 Database 연동 및 설정
+- [x] API 테스트 및 검증
 
-#### 실습 과제
+#### 실습 과제 완료 ✅
 ```java
-// Entity 설계
+// Module 1: Entity 설계
 @Entity
-public class User {
+@Table(name = "posts")
+public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    private String email;
-    private String name;
-    
-    @OneToMany(mappedBy = "user")
-    private List<Post> posts;
+    @CreatedDate
+    private LocalDateTime createdAt;
 }
 
-// Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-    Optional<User> findByEmail(String email);
+// Module 2: Repository
+public interface PostRepository extends JpaRepository {
+    List findByTitleContaining(String keyword);
 }
 
-// Service
+// Module 3: DTO
+public class PostRequest { /* title, content, author */ }
+public class PostResponse { /* + id, createdAt, updatedAt */ }
+
+// Module 4: Service
 @Service
-public class UserService {
-    private final UserRepository userRepository;
-    
-    public UserDTO createUser(CreateUserRequest request) {
-        // 구현
-    }
+@Transactional(readOnly = true)
+public class PostService {
+    @Transactional
+    public PostResponse createPost(PostRequest request) { }
 }
 
-// Controller
+// Module 5: Controller
 @RestController
-@RequestMapping("/api/users")
-public class UserController {
-    // REST API 구현
+@RequestMapping("/api/posts")
+public class PostController {
+    @GetMapping
+    public ResponseEntity<List> getAllPosts() { }
+    
+    @PostMapping
+    public ResponseEntity createPost(@RequestBody PostRequest request) { }
 }
 ```
 
+#### 프로젝트 구조
+```
+blog-api/
+├── entity/Post.java                  # JPA 엔티티
+├── repository/PostRepository.java    # 데이터 접근
+├── dto/PostRequest.java             # 요청 DTO
+├── dto/PostResponse.java            # 응답 DTO
+├── service/PostService.java         # 비즈니스 로직
+├── controller/PostController.java   # REST API
+└── application.properties           # 설정
+```
+
+#### 학습 통합
+```
+✅ Git 워크플로우
+   - Feature 브랜치: feature/spring-boot-jpa
+   - 3개 커밋 (모듈별 커밋)
+   - Conventional Commits
+
+✅ Java 17
+   - Record, var, Stream API
+   - Lombok으로 보일러플레이트 제거
+
+✅ Spring Boot
+   - 의존성 주입 (DI)
+   - 트랜잭션 관리
+   - 자동 설정 (Auto Configuration)
+
+✅ JPA
+   - Entity 매핑
+   - Repository 패턴
+   - 쿼리 메서드
+```
+
+#### 핵심 개념 정리
+
+**1. 계층형 아키텍처**
+```
+Controller (HTTP 요청/응답)
+    ↓
+Service (비즈니스 로직, 트랜잭션)
+    ↓
+Repository (데이터 접근)
+    ↓
+Database (H2)
+```
+
+**2. JPA Repository**
+- JpaRepository 상속으로 기본 CRUD 자동 제공
+- 쿼리 메서드로 SQL 없이 데이터 조회
+- `findByTitleContaining()` → SQL 자동 생성
+
+**3. DTO 패턴**
+- Entity를 직접 노출하지 않음
+- 계층 간 데이터 전송 최적화
+- API 응답 형식 자유롭게 변경 가능
+
+**4. 트랜잭션 관리**
+- `@Transactional(readOnly = true)`: 조회 최적화
+- `@Transactional`: 쓰기 작업 (생성/수정/삭제)
+- 예외 발생 시 자동 롤백
+
 #### 체크포인트
-- [ ] JPA로 CRUD 구현
-- [ ] 연관 관계 이해
-- [ ] 쿼리 메서드 작성
-- [ ] REST API 설계
+- [x] Spring Boot 프로젝트 생성 및 실행 ✅
+- [x] JPA Entity 설계 및 테이블 자동 생성 ✅
+- [x] Repository 패턴 이해 ✅
+- [x] Service 계층 구현 ✅
+- [x] REST API 엔드포인트 구현 ✅
+- [x] CRUD 작업 테스트 완료 ✅
+
+#### 완료 결과물
+- ✅ **커밋 3개**: feature/spring-boot-jpa 브랜치
+- 📄 **학습 노트**: [SPRING_BOOT_LEARNING.md](../practices/java/spring-boot/SPRING_BOOT_LEARNING.md)
+- 📄 **핸드오버**: [PHASE2-2_HANDOVER.md](../practices/java/spring-boot/PHASE2-2_HANDOVER.md)
+- 📊 **코드량**: ~350줄
+- 📁 **파일**: 8개
+- 🔌 **API**: 7개 엔드포인트
+
+#### API 엔드포인트
+```
+GET    /api/posts              - 전체 조회
+GET    /api/posts/{id}         - ID로 조회
+POST   /api/posts              - 생성
+PUT    /api/posts/{id}         - 수정
+DELETE /api/posts/{id}         - 삭제
+GET    /api/posts/search?keyword=xxx  - 제목 검색
+GET    /api/posts/author/{author}     - 작성자 검색
+```
+
+**✅ Phase 2-2 완료! (2025-11-25)**
 
 ---
 

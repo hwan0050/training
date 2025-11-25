@@ -115,6 +115,12 @@ git-factory/
 │   │   ├── NEXTJS_LEARNING.md   # 학습 노트
 │   │   └── PHASE2-1_HANDOVER.md # 핸드오버 문서
 │   │
+│   ├── java/                     # ✅ Java 실습
+│   │   └── spring-boot/         # Spring Boot 학습
+│   │       ├── blog-api/        # Blog REST API
+│   │       ├── SPRING_BOOT_LEARNING.md   # 학습 노트
+│   │       └── PHASE2-2_HANDOVER.md      # 핸드오버 문서
+│   │
 │   └── typescript/               # ✅ TypeScript 실습
 │       └── utilities/            # TypeScript 유틸리티
 │           ├── type-guards.ts   # Type Guard 20개
@@ -386,10 +392,14 @@ npm run dev
 - ✅ Loading States & Error Handling
 - 📝 [학습 노트](./practices/nextjs/NEXTJS_LEARNING.md) | [핸드오버 문서](./practices/nextjs/PHASE2-1_HANDOVER.md)
 
-#### 📋 Phase 2-2: Spring Boot 3.x + JPA (예정)
-- Spring Boot 프로젝트 초기화
-- REST API 설계 및 구현
-- JPA/Hibernate 데이터베이스 연동
+#### ✅ Phase 2-2: Spring Boot 3.x + JPA (완료 2025-11-25)
+- ✅ Spring Boot 프로젝트 초기화 (Java 17 + Gradle)
+- ✅ JPA Entity 설계 및 Auditing
+- ✅ Repository 패턴 (쿼리 메서드)
+- ✅ Service 계층 (트랜잭션 관리)
+- ✅ REST Controller (7개 API 엔드포인트)
+- ✅ H2 Database 연동
+- 📝 [학습 노트](./practices/java/spring-boot/SPRING_BOOT_LEARNING.md) | [핸드오버 문서](./practices/java/spring-boot/PHASE2-2_HANDOVER.md)
 
 #### 📋 Phase 2-3: Docker 컨테이너화 (예정)
 - Dockerfile 작성
@@ -444,6 +454,13 @@ npm run dev
 ---
 
 ## 📝 업데이트 로그
+
+### 2025-11-25 - Phase 2-2 완료! 🎉
+- ✅ Spring Boot 3.x + JPA 학습 완료
+- ✅ Blog REST API 구현 (7개 엔드포인트)
+- ✅ Entity, Repository, Service, Controller 계층 구현
+- ✅ JPA Auditing 및 쿼리 메서드 학습
+- 📊 총 350줄 코드, 3개 커밋, 8개 파일
 
 ### 2025-11-23 - Phase 2-1 완료! 🎉
 - ✅ Next.js 14 App Router 학습 완료
