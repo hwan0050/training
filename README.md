@@ -121,6 +121,10 @@ git-factory/
 │   │       ├── SPRING_BOOT_LEARNING.md   # 학습 노트
 │   │       └── PHASE2-2_HANDOVER.md      # 핸드오버 문서
 │   │
+│   ├── docker/                   # ✅ Docker 학습
+│   │   ├── DOCKER_LEARNING.md   # Docker 학습 노트
+│   │   └── PHASE2-3_HANDOVER.md # 핸드오버 문서
+│   │
 │   └── typescript/               # ✅ TypeScript 실습
 │       └── utilities/            # TypeScript 유틸리티
 │           ├── type-guards.ts   # Type Guard 20개
@@ -401,18 +405,23 @@ npm run dev
 - ✅ H2 Database 연동
 - 📝 [학습 노트](./practices/java/spring-boot/SPRING_BOOT_LEARNING.md) | [핸드오버 문서](./practices/java/spring-boot/PHASE2-2_HANDOVER.md)
 
-#### 📋 Phase 2-3: Docker 컨테이너화 (예정)
-- Dockerfile 작성
-- Docker Compose 구성
+#### ✅ Phase 2-3: Docker 컨테이너화 (완료 2025-11-27)
+- ✅ Dockerfile 작성 (멀티 스테이지 빌드)
+- ✅ Docker Compose 구성 (Spring Boot + PostgreSQL)
+- ✅ 환경 변수 기반 설정 관리
+- ✅ 볼륨을 통한 데이터 영속성
+- ✅ 네트워크 구성 및 서비스 간 통신
+- 📝 [학습 노트](./practices/docker/DOCKER_LEARNING.md) | [핸드오버 문서](./practices/docker/PHASE2-3_HANDOVER.md)
+- ⚠️ 실제 실행은 Docker Desktop 환경 준비 후 예정
 
 #### 📋 Phase 2-4: TDD & 테스트 (예정)
-- Jest 설정
-- 단위 테스트 작성
+- JUnit 5 단위 테스트
+- MockMvc 통합 테스트
+- Testcontainers
 
 ### 📅 예정
-- Spring Boot 백엔드 개발
-- Docker 컨테이너화
-- TDD & 테스트
+- TDD & 테스트 코드 작성
+- CI/CD 파이프라인 구축
 - MSA 아키텍처 구현
 
 ---
@@ -454,6 +463,15 @@ npm run dev
 ---
 
 ## 📝 업데이트 로그
+
+### 2025-11-27 - Phase 2-3 완료! 🎉
+- ✅ Docker 컨테이너화 학습 완료
+- ✅ Dockerfile 작성 (멀티 스테이지 빌드)
+- ✅ Docker Compose 구성 (Spring Boot + PostgreSQL)
+- ✅ 환경 변수 기반 설정 관리
+- ✅ 볼륨 및 네트워크 구성
+- 📊 총 120줄 코드, 2개 커밋, 5개 파일
+- ⚠️ Docker Desktop 환경 이슈로 실행 테스트는 추후 진행
 
 ### 2025-11-25 - Phase 2-2 완료! 🎉
 - ✅ Spring Boot 3.x + JPA 학습 완료
