@@ -18,451 +18,562 @@ Git Factory는 **현대적인 웹 개발 기술과 MSA(Microservices Architectur
 
 ---
 
-## 🎯 Phase 1 완료! (2024-11-22)
+## 🎯 프로젝트 개요
 
-### ✅ 완성된 학습 내용
+Git Factory는 단순한 코드 저장소가 아닌, **체계적인 학습 여정**을 기록하는 공간입니다.  
+각 Phase는 실전 프로젝트를 통해 기술을 익히고, 상세한 문서화를 통해 지식을 내재화합니다.
 
-#### 1. Git 워크플로우 마스터
-- [x] Git 기본 명령어 & 브랜치 전략
-- [x] Conflict 해결 실습
-- [x] Merge vs Rebase 비교
-- [x] Cherry-pick, Reset, Revert
-- [x] 실전 워크플로우 가이드 작성
+### 🎯 핵심 학습 원칙
 
-#### 2. TypeScript 완벽 정복
-- [x] TypeScript 기초 & 타입 시스템
-- [x] Type Guards 20개 구현
-- [x] Utility Types 11개 활용
-- [x] 실전 유틸리티 함수 45개 작성
-- [x] 제네릭 & 고급 타입 패턴
+1. **실전 중심**: 이론보다 실습, 튜토리얼보다 프로젝트
+2. **체계적 문서화**: 모든 학습 과정을 상세히 기록
+3. **점진적 발전**: 각 Phase가 다음 Phase의 기반이 됨
+4. **Git Workflow**: 실무와 동일한 브랜치 전략 및 PR 프로세스
 
-#### 3. React 핵심 개념
-- [x] React 기초 (Hooks, State, Props)
-- [x] Custom Hook (useLocalStorage) 구현
-- [x] Enhanced TodoList (필터링, LocalStorage, 수정)
-- [x] 컴포넌트 설계 & 상태 관리
+---
 
-#### 4. 통합 실전 프로젝트
-- [x] 🔖 **북마크 관리 앱** 완성!
-- [x] 완전한 CRUD 구현
-- [x] TypeScript + React 통합
-- [x] LocalStorage 영구 저장
-- [x] 필터링, 검색, 정렬 기능
+---
 
-### 📊 Phase 1 성과
+## 🗺️ 학습 로드맵
+
+### ✅ Phase 1: 기초 다지기 (완료!)
+
+**학습 기간**: 2024-11-18 ~ 2024-11-22 (5일)  
+**총 학습 시간**: 약 15시간  
+**완성 코드**: ~4,000줄  
+**완료 PR**: 4개
+
+#### 🎓 학습 목표
+- ✅ Git을 자유자재로 사용
+- ✅ TypeScript로 타입 안전한 코드 작성
+- ✅ React 핵심 개념 이해 및 활용
+- ✅ 실전 CRUD 애플리케이션 개발
+
+#### 완료된 모듈
+- ✅ **Git 워크플로우 마스터**
+    - Git 기본 명령어, 브랜치 전략
+    - Conflict 해결, Merge vs Rebase
+    - Cherry-pick, Reset, Revert
+    - 워크플로우 가이드 작성 (~600줄)
+
+- ✅ **TypeScript 완벽 정복**
+    - 기본 타입, Interface, Type Alias
+    - Generics, Utility Types (11개)
+    - Type Guards (20개)
+    - 유틸리티 함수 (45개)
+    - 총 ~1,400줄 코드
+
+- ✅ **React 핵심 개념**
+    - 컴포넌트, Props, State
+    - useState, useEffect Hooks
+    - Custom Hook (useLocalStorage)
+    - Enhanced TodoList (필터링, 수정)
+    - 총 ~500줄 코드
+
+- ✅ **통합 실전 프로젝트**
+    - 🔖 **북마크 관리 앱** 완성!
+    - 완전한 CRUD 구현
+    - TypeScript + React 통합
+    - LocalStorage 영구 저장
+    - 필터링, 검색, 정렬 기능
+    - 총 ~800줄 코드
+
+#### 📊 Phase 1 최종 성과
 - **코드**: ~4,000줄
 - **PR**: 4개 (모두 Merged)
 - **프로젝트**: 1개 (실사용 가능)
 - **학습 시간**: 약 15시간
-
----
-
-## 🛠️ 기술 스택
-
-### Frontend
-- **React 18+** - UI 라이브러리 ✅
-- **TypeScript 5+** - 타입 안전성 ✅
-- **Next.js 14+** - React 프레임워크 (App Router) ✅
-- **Tailwind CSS** - 스타일링 ✅
-
-### Backend
-- **Java 17+** - Spring Boot 3.x *[예정]*
-- **Python 3.11+** - FastAPI, Django *[예정]*
-- **Node.js 20+** - Express *[검토 중]*
-
-### Database & Cache
-- **PostgreSQL/MySQL** - 관계형 데이터베이스 *[예정]*
-- **MongoDB** - NoSQL *[예정]*
-- **Redis** - 캐싱 & 세션 *[예정]*
-
-### DevOps & Tools
-- **Git & GitHub** - 버전 관리 ✅
-- **Docker** - 컨테이너화 *[예정]*
-- **GitHub Actions** - CI/CD *[예정]*
-
----
-
-## 📂 프로젝트 구조
-```
-git-factory/
-├── README.md                      # 프로젝트 소개
-├── LICENSE                        # MIT 라이선스
-├── .gitignore                     # Git 제외 파일
-│
-├── docs/                          # 📚 학습 문서
-│   ├── GIT_WORKFLOW.md           # Git 작업 정책
-│   ├── LEARNING_PATH.md          # 학습 로드맵
-│   └── MSA_ARCHITECTURE.md       # MSA 아키텍처 가이드 (예정)
-│
-├── workflows/                     # 🔄 Git 워크플로우 학습
-│   └── git-practice/             # ✅ Git 실습
-│       ├── GIT_WORKFLOW_GUIDE.md # 워크플로우 완전 가이드
-│       └── practice.txt          # 실습 파일
-│
-├── practices/                     # 💻 코딩 실습
-│   ├── react/                    # ✅ React 실습
-│   │   └── components/           # React 컴포넌트 학습
-│   │       ├── src/
-│   │       │   ├── hooks/       # Custom Hooks
-│   │       │   ├── Counter.tsx
-│   │       │   ├── TodoList.tsx
-│   │       │   ├── TodoListEnhanced.tsx  # ⭐ 개선 버전
-│   │       │   └── ...
-│   │       └── package.json
-│   │
-│   ├── nextjs/                   # ✅ Next.js 실습
-│   │   ├── app-router/          # App Router 학습
-│   │   ├── NEXTJS_LEARNING.md   # 학습 노트
-│   │   └── PHASE2-1_HANDOVER.md # 핸드오버 문서
-│   │
-│   ├── java/                     # ✅ Java 실습
-│   │   └── spring-boot/         # Spring Boot 학습
-│   │       ├── blog-api/        # Blog REST API
-│   │       ├── SPRING_BOOT_LEARNING.md   # 학습 노트
-│   │       └── PHASE2-2_HANDOVER.md      # 핸드오버 문서
-│   │
-│   ├── docker/                   # ✅ Docker 학습
-│   │   ├── DOCKER_LEARNING.md   # Docker 학습 노트
-│   │   └── PHASE2-3_HANDOVER.md # 핸드오버 문서
-│   │
-│   └── typescript/               # ✅ TypeScript 실습
-│       └── utilities/            # TypeScript 유틸리티
-│           ├── type-guards.ts   # Type Guard 20개
-│           ├── utility-types.ts # Utility Types 11개
-│           └── utility-functions.ts  # 유틸리티 함수 45개
-│
-└── projects/                     # 🚀 실전 프로젝트
-    └── bookmark-manager/         # ✅ 북마크 관리 앱
-        ├── src/
-        │   ├── components/      # 컴포넌트 4개
-        │   ├── hooks/           # Custom Hook
-        │   ├── types/           # TypeScript 타입
-        │   ├── utils/           # 유틸리티
-        │   └── App.tsx
-        └── package.json
-```
-
----
-
-## 🚀 시작하기
-
-### 필수 요구사항
-```bash
-# Node.js & npm
-node --version  # v20.x 이상
-npm --version   # v10.x 이상
-
-# Git
-git --version
-```
-
-### 저장소 클론
-```bash
-git clone https://github.com/hwan0050/git-factory.git
-cd git-factory
-```
-
-### 프로젝트 실행
-
-#### 1. React 학습 프로젝트
-```bash
-cd practices/react/components
-npm install
-npm start
-```
-
-#### 2. Next.js App Router 학습
-```bash
-cd practices/nextjs/app-router
-npm install
-npm run dev
-```
-
-#### 3. 북마크 관리 앱 (통합 프로젝트)
-```bash
-cd projects/bookmark-manager
-npm install
-npm start
-```
-
----
-
-## 📚 학습 로드맵
-
-### ✅ Phase 1: 기초 다지기 (완료!)
-
-**학습 기간**: 2024-11-18 ~ 2024-11-22
-
-- [x] **Git 워크플로우** 
-  - Git 기본 명령어, 브랜치 전략
-  - Conflict 해결, Merge vs Rebase
-  - 워크플로우 가이드 작성
-
-- [x] **TypeScript 기초**
-  - 기본 타입, Interface, Type Alias
-  - Generics, Utility Types
-  - Type Guards, 유틸리티 함수
-
-- [x] **React 핵심 개념**
-  - 컴포넌트, Props, State
-  - useState, useEffect Hooks
-  - Custom Hook (useLocalStorage)
-
-- [x] **실전 보강 학습**
-  - React TodoList 개선 (LocalStorage, 필터링, 수정)
-  - TypeScript 개념 강화 (Type Guards, Utility Types, 함수)
-  - Git 워크플로우 연습 (Conflict, Merge, Rebase)
-
-- [x] **통합 미니 프로젝트**
-  - 🔖 북마크 관리 앱 완성
-  - CRUD, 필터링, 검색, 정렬
-  - Git + TypeScript + React 통합
-
-**성과**: 코드 ~4,000줄, PR 4개, 프로젝트 1개
+- **문서**: GIT_WORKFLOW_GUIDE.md 외 5개
 
 ---
 
 ### 🔄 Phase 2: 중급 개발 (진행 중)
 
-**시작일**: 2025-11-23
-
-#### ✅ Phase 2-1: Next.js 14 App Router (완료 2025-11-23)
-- [x] Next.js 프로젝트 초기화 (TypeScript + Tailwind CSS)
-- [x] App Router 파일 기반 라우팅
-- [x] Server Components vs Client Components
-- [x] Layouts & Nested Routes
-- [x] Dynamic Routes & Data Fetching
-- [x] Loading States & Error Handling
-
-**성과**: 코드 ~800줄, 커밋 6개, 파일 15개
-
-📝 **학습 자료**:
-- [Next.js 학습 노트](./practices/nextjs/NEXTJS_LEARNING.md)
-- [Phase 2-1 핸드오버 문서](./practices/nextjs/PHASE2-1_HANDOVER.md)
-
-#### 📋 Phase 2-2: Spring Boot 3.x + JPA (예정)
-- Spring Boot 프로젝트 초기화
-- REST API 설계 및 구현
-- JPA/Hibernate 데이터베이스 연동
-- CRUD 작업 구현
-
-#### 📋 Phase 2-3: Docker 컨테이너화 (예정)
-- Dockerfile 작성
-- Docker Compose 구성
-- 개발 환경 컨테이너화
-
-#### 📋 Phase 2-4: TDD & 테스트 (예정)
-- Jest 설정
-- React Testing Library
-- 단위 테스트 작성
-
-**예상 완료**: 2026-01
+**시작일**: 2025-11-23  
+**현재 진도**: Phase 2-4 완료 ✅
 
 ---
 
-### 🎯 Phase 3: MSA 아키텍처 (예정)
+#### ✅ Phase 2-1: Next.js 14 App Router (완료!)
 
-**예상 기간**: 3-4개월
+**학습 기간**: 2025-11-23 (1일)  
+**학습 시간**: 약 4-5시간  
+**완성 코드**: ~800줄  
+**완료 커밋**: 6개
 
-- [ ] Spring Cloud Netflix (Eureka, Gateway)
-- [ ] 마이크로서비스 간 통신
-- [ ] 메시지 큐 (Kafka/RabbitMQ)
-- [ ] 분산 트레이싱 & 로깅
-- [ ] API Gateway 패턴
+**학습 내용**:
+- Next.js 14 프로젝트 초기화 (TypeScript + Tailwind CSS)
+- App Router 파일 기반 라우팅
+- Server Components vs Client Components
+- Layouts & Nested Routes
+- Dynamic Routes & Data Fetching
+- Loading States & Error Handling
 
-**목표 프로젝트**: 이커머스 플랫폼 (MSA)
+**완성 프로젝트**: `app-router`
+- 파일 기반 라우팅 15개 파일
+- Server/Client Components 구분
+- Dynamic Routes 구현
+- Loading/Error Handling 패턴
+
+**문서**:
+- [NEXTJS_LEARNING.md](./practices/nextjs/NEXTJS_LEARNING.md)
+- [PHASE2-1_HANDOVER.md](./practices/nextjs/PHASE2-1_HANDOVER.md)
 
 ---
 
-자세한 학습 로드맵: [📖 LEARNING_PATH.md](docs/LEARNING_PATH.md)
+#### ✅ Phase 2-2: Spring Boot 3.x + JPA (완료!)
+
+**학습 기간**: 2025-11-25 (1일)  
+**학습 시간**: 약 3-4시간  
+**완성 코드**: ~350줄  
+**완료 커밋**: 3개
+
+**학습 내용**:
+- Spring Boot 프로젝트 구조
+- JPA Entity 설계 및 Auditing
+- Repository 패턴 (쿼리 메서드)
+- Service 계층 (트랜잭션 관리)
+- REST Controller (7개 API 엔드포인트)
+- DTO 패턴 (Request/Response)
+- H2 Database 연동
+
+**완성 프로젝트**: `blog-api`
+- CRUD 기능 완전 구현
+- RESTful API 설계
+- JPA Auditing
+- 계층형 아키텍처 (Controller-Service-Repository)
+- 7개 API 엔드포인트
+
+**문서**:
+- [SPRING_BOOT_LEARNING.md](./docs/SPRING_BOOT_LEARNING.md)
+- [PHASE2-2_HANDOVER.md](./docs/PHASE2-2_HANDOVER.md)
 
 ---
 
-## 🔄 Git 워크플로우
+#### ✅ Phase 2-3: Docker & Containerization (완료!)
+
+**학습 기간**: 2025-11-27 (1일)  
+**학습 시간**: 약 2-3시간  
+**완성 코드**: ~120줄  
+**완료 커밋**: 2개
+
+**학습 내용**:
+- Docker 기본 개념 및 명령어
+- Dockerfile 작성 (Multi-stage build)
+- Docker Compose 활용
+- Spring Boot + PostgreSQL 컨테이너화
+- 환경 변수 관리 (H2 ↔ PostgreSQL 전환)
+- 볼륨을 통한 데이터 영속성
+- 네트워크 구성 및 서비스 간 통신
+
+**주요 성과**:
+- Multi-stage Dockerfile 작성
+- docker-compose.yml 구성
+- 환경별 DB 전환 전략
+- 상세한 학습 노트 및 핸드오버 문서
+
+**기술적 제약**:
+- Windows 10 build 호환성 문제로 Docker Desktop 미설치
+- 개념 학습 및 설정 완료, 실행 환경은 추후 구축 예정
+
+**문서**:
+- [DOCKER_LEARNING.md](./docs/DOCKER_LEARNING.md) (~800 lines)
+- [PHASE2-3_HANDOVER.md](./docs/PHASE2-3_HANDOVER.md) (~600 lines)
+
+---
+
+#### ✅ Phase 2-4: TDD & Spring Boot Testing (완료!)
+
+**학습 기간**: 2025-11-30 ~ 2025-12-01 (2일)  
+**학습 시간**: 약 6-7시간  
+**완성 코드**: ~800줄 (테스트 코드)  
+**완료 커밋**: 예정
+
+**학습 내용**:
+- TDD (Test-Driven Development) 사이클
+- Spring Boot Test Slice Annotations
+    - `@DataJpaTest` - Repository 계층 테스트
+    - `@WebMvcTest` - Controller 계층 테스트
+    - `@ExtendWith(MockitoExtension.class)` - Service 계층 테스트
+- Mockito 활용한 단위 테스트
+- MockMvc를 활용한 API 테스트
+- Given-When-Then 패턴
+
+**테스트 구조**:
+```
+src/test/java/com/gitfactory/blogapi/
+├── repository/
+│   └── PostRepositoryTest.java       (7개 테스트) ✅
+├── service/
+│   └── PostServiceTest.java          (10개 테스트) ✅
+└── controller/
+    └── PostControllerTest.java       (8개 테스트) ✅
+
+총 25개 테스트 케이스 - ALL PASSED ✅
+```
+
+**주요 성과**:
+- 계층별 테스트 완전 구현 (Repository, Service, Controller)
+- 100% 테스트 통과율 (25/25)
+- JPA Auditing 분리 및 테스트 격리
+- GlobalExceptionHandler 구현 (404 에러 처리)
+- 상세한 학습 노트 및 트러블슈팅 문서
+
+**해결한 이슈**:
+1. JPA Auditing 에러 → JpaAuditingConfig 분리
+2. Import 충돌 (Hamcrest vs Mockito) → 명시적 import
+3. 404 예외 처리 → GlobalExceptionHandler 추가
+4. 파라미터 이름 불일치 수정 (title → keyword)
+
+**추가 구현**:
+- `JpaAuditingConfig.java` - JPA Auditing 설정 분리
+- `GlobalExceptionHandler.java` - 전역 예외 처리
+
+**문서**:
+- [TESTING_LEARNING.md](./docs/TESTING_LEARNING.md) (~800 lines)
+- [PHASE2-4_HANDOVER.md](./docs/PHASE2-4_HANDOVER.md) (~600 lines)
+
+---
+
+#### 📋 Phase 2-5: API Documentation & Integration Testing (예정)
+
+**예상 기간**: 2-3일
+
+**계획**:
+- Spring REST Docs
+- Swagger/OpenAPI
+- 통합 테스트 (@SpringBootTest)
+- 테스트 커버리지 측정 (JaCoCo)
+
+---
+
+### Phase 3: Advanced Backend 🚀
+**상태**: 📅 예정
+
+- Security & Authentication (Spring Security, JWT)
+- Microservices Architecture
+- Message Queues (RabbitMQ, Kafka)
+- Caching Strategies (Redis)
+
+---
+
+### Phase 4: Frontend & Full-Stack Integration 🎨
+**상태**: 📅 예정
+
+- Next.js & Server Components
+- State Management (Redux, Zustand)
+- API Integration
+- Full-Stack 프로젝트
+
+---
+
+## 📁 프로젝트 구조
+
+```
+git-factory/
+├── docs/                                    # 📚 모든 학습 문서 통합
+│   ├── SPRING_BOOT_LEARNING.md             (Phase 2-2)
+│   ├── PHASE2-2_HANDOVER.md                (Phase 2-2)
+│   ├── DOCKER_LEARNING.md                  (Phase 2-3, ~800 lines)
+│   ├── PHASE2-3_HANDOVER.md                (Phase 2-3, ~600 lines)
+│   ├── TESTING_LEARNING.md                 (Phase 2-4, ~800 lines) ✨
+│   └── PHASE2-4_HANDOVER.md                (Phase 2-4, ~600 lines) ✨
+│
+├── workflows/                               # 🔄 Git 워크플로우 학습
+│   └── git-practice/
+│       ├── GIT_WORKFLOW_GUIDE.md           (~600 lines)
+│       └── practice.txt
+│
+├── practices/                               # 💻 실습 프로젝트
+│   ├── typescript/                         (Phase 1)
+│   │   └── utilities/
+│   │       ├── type-guards.ts             (20개)
+│   │       ├── utility-types.ts           (11개)
+│   │       └── utility-functions.ts       (45개)
+│   │
+│   ├── react/                              (Phase 1)
+│   │   └── components/
+│   │       ├── src/
+│   │       │   ├── hooks/
+│   │       │   │   └── useLocalStorage.ts
+│   │       │   ├── Counter.tsx
+│   │       │   ├── TodoList.tsx
+│   │       │   └── TodoListEnhanced.tsx
+│   │       └── package.json
+│   │
+│   ├── nextjs/                             (Phase 2-1)
+│   │   ├── app-router/                    (~800 lines, 15개 파일)
+│   │   ├── NEXTJS_LEARNING.md
+│   │   └── PHASE2-1_HANDOVER.md
+│   │
+│   └── java/
+│       └── spring-boot/
+│           └── blog-api/                   (Phase 2-2, 2-3, 2-4)
+│               ├── src/
+│               │   ├── main/
+│               │   │   ├── java/
+│               │   │   │   └── com/gitfactory/blogapi/
+│               │   │   │       ├── controller/
+│               │   │   │       │   └── PostController.java
+│               │   │   │       ├── service/
+│               │   │   │       │   └── PostService.java
+│               │   │   │       ├── repository/
+│               │   │   │       │   └── PostRepository.java
+│               │   │   │       ├── entity/
+│               │   │   │       │   └── Post.java
+│               │   │   │       ├── dto/
+│               │   │   │       │   ├── PostRequest.java
+│               │   │   │       │   └── PostResponse.java
+│               │   │   │       ├── config/
+│               │   │   │       │   └── JpaAuditingConfig.java      ✨
+│               │   │   │       └── exception/
+│               │   │   │           └── GlobalExceptionHandler.java ✨
+│               │   │   └── resources/
+│               │   │       └── application.properties
+│               │   │
+│               │   └── test/                           ✨ NEW
+│               │       └── java/
+│               │           └── com/gitfactory/blogapi/
+│               │               ├── repository/
+│               │               │   └── PostRepositoryTest.java      (7개 테스트)
+│               │               ├── service/
+│               │               │   └── PostServiceTest.java         (10개 테스트)
+│               │               └── controller/
+│               │                   └── PostControllerTest.java      (8개 테스트)
+│               │
+│               ├── Dockerfile                          (Phase 2-3)
+│               ├── docker-compose.yml                  (Phase 2-3)
+│               ├── .dockerignore                       (Phase 2-3)
+│               └── build.gradle
+│
+├── projects/                                # 🚀 실전 프로젝트
+│   └── bookmark-manager/                   (Phase 1)
+│       ├── src/
+│       │   ├── components/                 (4개)
+│       │   ├── hooks/                      (useLocalStorage)
+│       │   ├── types/                      (8개 타입)
+│       │   ├── utils/                      (7개 함수)
+│       │   └── App.tsx
+│       └── package.json
+│
+└── README.md                                (This file)
+```
+
+---
+
+## 🧪 테스트 실행 방법
+
+### blog-api 테스트
+
+```bash
+# 프로젝트 디렉토리로 이동
+cd practices/java/spring-boot/blog-api
+
+# 전체 테스트 실행
+./gradlew clean test
+
+# 특정 테스트만 실행
+./gradlew test --tests "com.gitfactory.blogapi.repository.PostRepositoryTest"
+./gradlew test --tests "com.gitfactory.blogapi.service.PostServiceTest"
+./gradlew test --tests "com.gitfactory.blogapi.controller.PostControllerTest"
+
+# 테스트 리포트 확인
+# build/reports/tests/test/index.html
+```
+
+**예상 결과**:
+```
+BUILD SUCCESSFUL in 8s
+✅ PostRepositoryTest:  7/7  (100%)
+✅ PostServiceTest:     10/10 (100%)
+✅ PostControllerTest:  8/8   (100%)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ 총합:                25/25 (100%)
+```
+
+---
+
+## 🐳 Docker 실행 (Phase 2-3)
+
+### Docker 명령어
+
+```bash
+# 프로젝트 디렉토리로 이동
+cd practices/java/spring-boot/blog-api
+
+# Docker 이미지 빌드
+docker build -t blog-api:latest .
+
+# Docker Compose로 실행 (Spring Boot + PostgreSQL)
+docker-compose up -d
+
+# 로그 확인
+docker-compose logs -f
+
+# 컨테이너 중지
+docker-compose down
+
+# 볼륨까지 삭제
+docker-compose down -v
+```
+
+**참고**: Windows 10 build 호환성 문제로 현재 Docker Desktop 미설치 상태
+
+---
+
+## 💻 개발 환경
+
+### 필수 도구
+- **OS**: Windows 10
+- **IDE**: IntelliJ IDEA, VSCode
+- **Shell**: PowerShell
+- **JDK**: 17
+- **Node.js**: 18+
+- **Git**: 2.40+
+
+### 선택 도구
+- **Docker Desktop**: (설치 예정)
+- **Postman**: API 테스트
+- **DBeaver**: DB 관리
+
+---
+
+## 📖 학습 문서
+
+### Phase 1
+- [Phase 1 Handover Document](./HANDOVER_PHASE1.md)
+- Git Workflow Guide (600 lines)
+- TypeScript Learning Notes
+- React Implementation Guide
+
+### Phase 2-2: Spring Boot
+- [SPRING_BOOT_LEARNING.md](./docs/SPRING_BOOT_LEARNING.md)
+- [PHASE2-2_HANDOVER.md](./docs/PHASE2-2_HANDOVER.md)
+
+### Phase 2-3: Docker
+- [DOCKER_LEARNING.md](./docs/DOCKER_LEARNING.md) - 800 lines
+    - Docker 기본 개념
+    - Dockerfile 작성법
+    - Docker Compose 활용
+    - 실전 예제 및 명령어
+- [PHASE2-3_HANDOVER.md](./docs/PHASE2-3_HANDOVER.md) - 600 lines
+    - 구현 내용 상세
+    - 주요 이슈 및 해결 방법
+    - 인수인계 가이드
+
+### Phase 2-4: TDD & Testing ✨
+- [TESTING_LEARNING.md](./docs/TESTING_LEARNING.md) - 800 lines
+    - TDD 개념 및 사이클
+    - Spring Boot Test Annotations
+    - Mockito & MockMvc 사용법
+    - Given-When-Then 패턴
+    - 실전 예제 및 트러블슈팅
+- [PHASE2-4_HANDOVER.md](./docs/PHASE2-4_HANDOVER.md) - 600 lines
+    - 테스트 구조 상세
+    - 25개 테스트 케이스 설명
+    - 주요 이슈 및 해결 방법
+    - 인수인계 가이드
+
+---
+
+## 🎯 Git Workflow
 
 ### 브랜치 전략
+
 ```
-main - 프로덕션 브랜치 (안정 버전)
- └── develop - 개발 브랜치 (다음 릴리스)
-      ├── feature/nextjs-app-router      # 기능 개발 (진행 중)
-      ├── feature/bookmark-manager       # 기능 개발 (완료)
-      ├── feature/typescript-utilities   # 기능 개발 (완료)
-      └── fix/typo-in-readme            # 버그 수정
+main (프로덕션)
+  ↑
+develop (개발)
+  ↑
+feature/* (기능 개발)
 ```
 
-### 커밋 메시지 규칙
+### 커밋 메시지 컨벤션
+
 ```bash
-feat: 새로운 기능 추가
-fix: 버그 수정
-docs: 문서 수정
-style: 코드 포맷팅
-refactor: 코드 리팩토링
-test: 테스트 코드
-chore: 빌드, 설정 파일 수정
+# Conventional Commits 형식
+<type>(<scope>): <subject>
+
+# 예시
+feat(blog-api): Add Post CRUD endpoints
+test(repository): Add PostRepositoryTest with 7 test cases
+docs: Update README for Phase 2-4 completion
+fix(test): Resolve JPA Auditing conflict in tests
 ```
 
-**예시:**
-```bash
-git commit -m "feat: Add bookmark manager app with CRUD functionality"
-git commit -m "feat: Implement Next.js App Router with dynamic routes"
-git commit -m "docs: Update README with Phase 2-1 completion"
-git commit -m "fix: Resolve TypeScript type error in BookmarkForm"
-```
-
-📖 자세한 내용: [Git 워크플로우 가이드](workflows/git-practice/GIT_WORKFLOW_GUIDE.md)
-
----
-
-## 🎓 완성 프로젝트
-
-### 🔖 북마크 관리 앱 (Phase 1)
-
-**기술**: React + TypeScript + LocalStorage
-
-**주요 기능**:
-- ✅ CRUD (추가, 조회, 수정, 삭제)
-- ✅ 카테고리 분류 (6종)
-- ✅ 즐겨찾기
-- ✅ 태그 시스템
-- ✅ 검색 & 필터링
-- ✅ 정렬 (최신순, 오래된순, 제목순)
-- ✅ LocalStorage 영구 저장
-- ✅ 통계 대시보드
-
-**실행 방법**:
-```bash
-cd projects/bookmark-manager
-npm install
-npm start
-```
-
-**관련 PR**: [#11](https://github.com/hwan0050/git-factory/pull/11)
+**Type**:
+- `feat`: 새로운 기능
+- `fix`: 버그 수정
+- `docs`: 문서 변경
+- `test`: 테스트 추가/수정
+- `refactor`: 리팩토링
+- `style`: 코드 포맷팅
+- `chore`: 빌드/설정 변경
 
 ---
 
-### 📝 Next.js Blog (Phase 2-1)
+---
 
-**기술**: Next.js 14 + TypeScript + Tailwind CSS
+## 📊 학습 통계
 
-**주요 기능**:
-- ✅ App Router 파일 기반 라우팅
-- ✅ Server Components & Client Components 구분
-- ✅ Dynamic Routes (`/blog/posts/[id]`)
-- ✅ Layouts & Nested Routes
-- ✅ Loading UI (Skeleton)
-- ✅ Error Boundary
-- ✅ 404 페이지
+### ✅ Phase 1 (완료)
+- **기간**: 2024-11-18 ~ 2024-11-22 (5일)
+- **학습 시간**: 15시간
+- **커밋 수**: 50+
+- **작성 코드**: ~4,000 lines
+- **PR**: 4개 (모두 merge 완료)
+- **프로젝트**: 북마크 관리 앱 (실사용 가능)
 
-**실행 방법**:
-```bash
-cd practices/nextjs/app-router
-npm install
-npm run dev
-```
+### 🔄 Phase 2 (진행 중)
+- **기간**: 2025-11-23 ~ 현재
+- **완료 모듈**: Phase 2-1, 2-2, 2-3, 2-4 ✅
+- **작성 코드**:
+    - Java/Spring Boot: ~350 lines
+    - 테스트 코드: ~800 lines
+    - Docker 설정: ~120 lines
+    - Next.js: ~800 lines
+- **테스트 케이스**: 25개 (100% 통과 ✅)
+- **작성 문서**: ~4,400 lines (8개 문서)
+- **커밋 수**: 13개+
 
 ---
 
-## 🤝 기여하기
+## 🚀 다음 단계
 
-이 프로젝트는 학습 목적이지만 기여를 환영합니다!
+### 즉시 진행
+- [ ] Phase 2-4 최종 커밋 및 PR
+- [ ] develop → main 브랜치 병합
 
-1. 🍴 이 저장소를 Fork
-2. 🌿 Feature 브랜치 생성 (`git checkout -b feature/amazing-learning`)
-3. 💾 변경사항 커밋 (`git commit -m 'feat: Add amazing learning content'`)
-4. 📤 브랜치에 Push (`git push origin feature/amazing-learning`)
-5. 🎉 Pull Request 생성
-
-자세한 가이드: [CONTRIBUTING.md](CONTRIBUTING.md)
-
----
-
-## 📊 현재 진행 상황
-
-### ✅ Phase 1 완료 (2024-11-22)
-- Git 기본 명령어 마스터
-- TypeScript 타입 시스템 완벽 이해
-- React Hooks 자유자재로 사용
-- Custom Hook 구현 및 재사용
-- 실전 CRUD 앱 개발 (북마크 관리 앱)
-
-### 🔄 Phase 2 진행 중 (2025-11-23~)
-
-#### ✅ Phase 2-1: Next.js 14 App Router (완료 2025-11-23)
-- ✅ Next.js 프로젝트 초기화 (TypeScript + Tailwind)
-- ✅ App Router 파일 기반 라우팅 학습
-- ✅ Server Components vs Client Components 구현
-- ✅ Layouts & Nested Routes 실습
-- ✅ Dynamic Routes & Data Fetching
-- ✅ Loading States & Error Handling
-- 📝 [학습 노트](./practices/nextjs/NEXTJS_LEARNING.md) | [핸드오버 문서](./practices/nextjs/PHASE2-1_HANDOVER.md)
-
-#### ✅ Phase 2-2: Spring Boot 3.x + JPA (완료 2025-11-25)
-- ✅ Spring Boot 프로젝트 초기화 (Java 17 + Gradle)
-- ✅ JPA Entity 설계 및 Auditing
-- ✅ Repository 패턴 (쿼리 메서드)
-- ✅ Service 계층 (트랜잭션 관리)
-- ✅ REST Controller (7개 API 엔드포인트)
-- ✅ H2 Database 연동
-- 📝 [학습 노트](./practices/java/spring-boot/SPRING_BOOT_LEARNING.md) | [핸드오버 문서](./practices/java/spring-boot/PHASE2-2_HANDOVER.md)
-
-#### ✅ Phase 2-3: Docker 컨테이너화 (완료 2025-11-27)
-- ✅ Dockerfile 작성 (멀티 스테이지 빌드)
-- ✅ Docker Compose 구성 (Spring Boot + PostgreSQL)
-- ✅ 환경 변수 기반 설정 관리
-- ✅ 볼륨을 통한 데이터 영속성
-- ✅ 네트워크 구성 및 서비스 간 통신
-- 📝 [학습 노트](./practices/docker/DOCKER_LEARNING.md) | [핸드오버 문서](./practices/docker/PHASE2-3_HANDOVER.md)
-- ⚠️ 실제 실행은 Docker Desktop 환경 준비 후 예정
-
-#### 📋 Phase 2-4: TDD & 테스트 (예정)
-- JUnit 5 단위 테스트
-- MockMvc 통합 테스트
-- Testcontainers
-
-### 📅 예정
-- TDD & 테스트 코드 작성
-- CI/CD 파이프라인 구축
-- MSA 아키텍처 구현
+### Phase 2-5 계획
+- [ ] Spring REST Docs 작성
+- [ ] Swagger UI 통합
+- [ ] 통합 테스트 추가
+- [ ] 테스트 커버리지 측정 (JaCoCo)
 
 ---
 
-## 📖 참고 자료
+## 📞 Contact
 
-### 공식 문서
-- [React 공식 문서](https://react.dev)
-- [Next.js 공식 문서](https://nextjs.org/docs)
-- [TypeScript 핸드북](https://www.typescriptlang.org/docs/)
-- [Spring Boot 공식 문서](https://spring.io/projects/spring-boot)
-- [FastAPI 공식 문서](https://fastapi.tiangolo.com)
-
-### 추천 자료
-- [Git 브랜치 전략](workflows/git-practice/GIT_WORKFLOW_GUIDE.md)
-- [Martin Fowler - Microservices](https://martinfowler.com/articles/microservices.html)
+- **GitHub**: [@hwan0050](https://github.com/hwan0050)
+- **Email**: akma0050@naver.com
 
 ---
 
-## 📜 라이선스
+## 📝 License
 
-이 프로젝트는 MIT 라이선스를 따릅니다. 자세한 내용은 [LICENSE](LICENSE) 파일을 참조하세요.
-
----
-
-## 👤 만든이
-
-**Hwan Lee**
-
-- GitHub: [@hwan0050](https://github.com/hwan0050)
-- Email: [akma0050@naver.com](mailto:akma0050@naver.com)
-
----
-
-## ⭐ Star History
-
-이 프로젝트가 도움이 되셨다면 Star를 눌러주세요! ⭐
+이 프로젝트는 개인 학습 목적으로 작성되었습니다.
 
 ---
 
 ## 📝 업데이트 로그
+
+### 2025-12-01 - Phase 2-4 완료! 🎉
+- ✅ TDD & Spring Boot Testing 학습 완료
+- ✅ Repository, Service, Controller 계층별 테스트 작성
+- ✅ 총 25개 테스트 케이스 (100% 통과)
+- ✅ JPA Auditing 분리 및 GlobalExceptionHandler 추가
+- ✅ Mockito & MockMvc 마스터
+- 📊 총 800줄 테스트 코드, 1,400줄 문서
 
 ### 2025-11-27 - Phase 2-3 완료! 🎉
 - ✅ Docker 컨테이너화 학습 완료
