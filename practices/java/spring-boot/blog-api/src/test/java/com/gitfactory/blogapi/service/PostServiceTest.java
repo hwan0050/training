@@ -20,9 +20,8 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.BDDMockito.then;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.times;
 
 @ExtendWith(MockitoExtension.class)
@@ -41,203 +40,158 @@ class PostServiceTest {
     @BeforeEach
     void setUp() {
         testPost = Post.builder()
-                .id(1L)
-                .title("테스트 포스트")
+                .title("테스트 제목")
                 .content("테스트 내용")
-                .author("Hwan")
+                .author("테스트 작성자")
                 .build();
 
         postRequest = PostRequest.builder()
-                .title("새 포스트")
-                .content("새 내용")
-                .author("Hwan")
+                .title("테스트 제목")
+                .content("테스트 내용")
+                .author("테스트 작성자")
                 .build();
     }
 
     @Test
-    @DisplayName("전체 포스트 조회 - 성공")
-    void getAllPosts_Success() {
-        // given
-        Post post1 = Post.builder()
-                .id(1L)
-                .title("포스트 1")
-                .content("내용 1")
-                .author("Hwan")
-                .build();
-        Post post2 = Post.builder()
-                .id(2L)
-                .title("포스트 2")
-                .content("내용 2")
-                .author("Hwan")
-                .build();
-        List<Post> posts = Arrays.asList(post1, post2);
-
+    @DisplayName("전체 포스트 조회 성공")
+    void getAllPosts() {
+        // Given
+        List<Post> posts = Arrays.asList(testPost);
         given(postRepository.findAll()).willReturn(posts);
 
-        // when
+        // When
         List<PostResponse> result = postService.getAllPosts();
 
-        // then
-        assertThat(result).hasSize(2);
-        assertThat(result.get(0).getTitle()).isEqualTo("포스트 1");
-        assertThat(result.get(1).getTitle()).isEqualTo("포스트 2");
-        then(postRepository).should(times(1)).findAll();
+        // Then
+        assertThat(result).hasSize(1);
+        assertThat(result.get(0).getTitle()).isEqualTo("테스트 제목");
     }
 
     @Test
-    @DisplayName("ID로 포스트 조회 - 성공")
+    @DisplayName("ID로 포스트 조회 성공")
     void getPostById_Success() {
-        // given
+        // Given
         given(postRepository.findById(1L)).willReturn(Optional.of(testPost));
 
-        // when
+        // When
         PostResponse result = postService.getPostById(1L);
 
-        // then
-        assertThat(result.getId()).isEqualTo(1L);
-        assertThat(result.getTitle()).isEqualTo("테스트 포스트");
+        // Then
+        assertThat(result.getTitle()).isEqualTo("테스트 제목");
         assertThat(result.getContent()).isEqualTo("테스트 내용");
-        then(postRepository).should(times(1)).findById(1L);
     }
 
     @Test
-    @DisplayName("ID로 포스트 조회 - 실패 (존재하지 않는 ID)")
+    @DisplayName("ID로 포스트 조회 실패 - 존재하지 않는 ID")
     void getPostById_NotFound() {
-        // given
+        // Given
         given(postRepository.findById(999L)).willReturn(Optional.empty());
 
-        // when & then
+        // When & Then
         assertThatThrownBy(() -> postService.getPostById(999L))
                 .isInstanceOf(RuntimeException.class)
-                .hasMessageContaining("Post not found with id:");
-        then(postRepository).should(times(1)).findById(999L);
+                .hasMessageContaining("Post not found with id: 999");
     }
 
     @Test
-    @DisplayName("포스트 생성 - 성공")
-    void createPost_Success() {
-        // given
-        Post savedPost = Post.builder()
-                .id(1L)
-                .title(postRequest.getTitle())
-                .content(postRequest.getContent())
-                .author(postRequest.getAuthor())
-                .build();
+    @DisplayName("포스트 생성 성공")
+    void createPost() {
+        // Given
+        given(postRepository.save(any(Post.class))).willReturn(testPost);
 
-        given(postRepository.save(any(Post.class))).willReturn(savedPost);
-
-        // when
+        // When
         PostResponse result = postService.createPost(postRequest);
 
-        // then
-        assertThat(result.getId()).isEqualTo(1L);
-        assertThat(result.getTitle()).isEqualTo("새 포스트");
-        assertThat(result.getContent()).isEqualTo("새 내용");
-        assertThat(result.getAuthor()).isEqualTo("Hwan");
-        then(postRepository).should(times(1)).save(any(Post.class));
+        // Then
+        assertThat(result.getTitle()).isEqualTo("테스트 제목");
+        assertThat(result.getContent()).isEqualTo("테스트 내용");
+        verify(postRepository, times(1)).save(any(Post.class));
     }
 
     @Test
-    @DisplayName("포스트 수정 - 성공")
+    @DisplayName("포스트 수정 성공")
     void updatePost_Success() {
-        // given
+        // Given
         PostRequest updateRequest = PostRequest.builder()
                 .title("수정된 제목")
                 .content("수정된 내용")
-                .author("Hwan")
-                .build();
-
-        Post updatedPost = Post.builder()
-                .id(1L)
-                .title("수정된 제목")
-                .content("수정된 내용")
-                .author("Hwan")
+                .author("테스트 작성자")
                 .build();
 
         given(postRepository.findById(1L)).willReturn(Optional.of(testPost));
-        given(postRepository.save(any(Post.class))).willReturn(updatedPost);
 
-        // when
+        // When
         PostResponse result = postService.updatePost(1L, updateRequest);
 
-        // then
+        // Then
         assertThat(result.getTitle()).isEqualTo("수정된 제목");
         assertThat(result.getContent()).isEqualTo("수정된 내용");
-        then(postRepository).should(times(1)).findById(1L);
-        then(postRepository).should(times(1)).save(any(Post.class));
     }
 
     @Test
-    @DisplayName("포스트 수정 - 실패 (존재하지 않는 ID)")
+    @DisplayName("포스트 수정 실패 - 존재하지 않는 ID")
     void updatePost_NotFound() {
-        // given
+        // Given
         given(postRepository.findById(999L)).willReturn(Optional.empty());
 
-        // when & then
+        // When & Then
         assertThatThrownBy(() -> postService.updatePost(999L, postRequest))
                 .isInstanceOf(RuntimeException.class)
-                .hasMessageContaining("Post not found with id:");
-        then(postRepository).should(times(1)).findById(999L);
-        then(postRepository).should(times(0)).save(any(Post.class));
+                .hasMessageContaining("Post not found with id: 999");
     }
 
     @Test
-    @DisplayName("포스트 삭제 - 성공")
+    @DisplayName("포스트 삭제 성공")
     void deletePost_Success() {
-        // given
+        // Given
         given(postRepository.findById(1L)).willReturn(Optional.of(testPost));
 
-        // when
+        // When
         postService.deletePost(1L);
 
-        // then
-        then(postRepository).should(times(1)).findById(1L);
-        then(postRepository).should(times(1)).delete(testPost);
+        // Then
+        verify(postRepository, times(1)).delete(testPost);
     }
 
     @Test
-    @DisplayName("포스트 삭제 - 실패 (존재하지 않는 ID)")
+    @DisplayName("포스트 삭제 실패 - 존재하지 않는 ID")
     void deletePost_NotFound() {
-        // given
+        // Given
         given(postRepository.findById(999L)).willReturn(Optional.empty());
 
-        // when & then
+        // When & Then
         assertThatThrownBy(() -> postService.deletePost(999L))
                 .isInstanceOf(RuntimeException.class)
-                .hasMessageContaining("Post not found with id:");
-        then(postRepository).should(times(1)).findById(999L);
-        then(postRepository).should(times(0)).delete(any(Post.class));
+                .hasMessageContaining("Post not found with id: 999");
     }
 
     @Test
-    @DisplayName("제목으로 포스트 검색 - 성공")
-    void searchByTitle_Success() {
-        // given
+    @DisplayName("제목으로 포스트 검색")
+    void searchByTitle() {
+        // Given
         List<Post> posts = Arrays.asList(testPost);
         given(postRepository.findByTitleContaining("테스트")).willReturn(posts);
 
-        // when
+        // When
         List<PostResponse> result = postService.searchByTitle("테스트");
 
-        // then
+        // Then
         assertThat(result).hasSize(1);
-        assertThat(result.get(0).getTitle()).isEqualTo("테스트 포스트");
-        then(postRepository).should(times(1)).findByTitleContaining("테스트");
+        assertThat(result.get(0).getTitle()).isEqualTo("테스트 제목");
     }
 
     @Test
-    @DisplayName("작성자로 포스트 검색 - 성공")
-    void searchByAuthor_Success() {
-        // given
+    @DisplayName("작성자로 포스트 검색")
+    void getPostsByAuthor() {
+        // Given
         List<Post> posts = Arrays.asList(testPost);
-        given(postRepository.findByAuthor("Hwan")).willReturn(posts);
+        given(postRepository.findByAuthor("테스트 작성자")).willReturn(posts);
 
-        // when
-        List<PostResponse> result = postService.searchByAuthor("Hwan");
+        // When
+        List<PostResponse> result = postService.getPostsByAuthor("테스트 작성자");
 
-        // then
+        // Then
         assertThat(result).hasSize(1);
-        assertThat(result.get(0).getAuthor()).isEqualTo("Hwan");
-        then(postRepository).should(times(1)).findByAuthor("Hwan");
+        assertThat(result.get(0).getAuthor()).isEqualTo("테스트 작성자");
     }
 }

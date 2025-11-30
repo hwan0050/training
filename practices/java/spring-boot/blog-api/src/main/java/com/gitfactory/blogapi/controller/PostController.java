@@ -64,7 +64,7 @@ public class PostController {
     // 작성자로 검색
     @GetMapping("/author/{author}")
     public ResponseEntity<List<PostResponse>> searchByAuthor(@PathVariable String author) {
-        List<PostResponse> posts = postService.searchByAuthor(author);
+        List<PostResponse> posts = postService.getPostsByAuthor(author);
         return ResponseEntity.ok(posts);
     }
 }

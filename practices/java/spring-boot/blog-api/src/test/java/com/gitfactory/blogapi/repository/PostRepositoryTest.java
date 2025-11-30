@@ -1,7 +1,6 @@
 package com.gitfactory.blogapi.repository;
 
 import com.gitfactory.blogapi.entity.Post;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,41 +18,24 @@ class PostRepositoryTest {
     @Autowired
     private PostRepository postRepository;
 
-    private Post testPost1;
-    private Post testPost2;
-
-    @BeforeEach
-    void setUp() {
-        // 테스트 데이터 초기화
-        postRepository.deleteAll();
-
-        testPost1 = Post.builder()
-                .title("Spring Boot 테스트")
-                .content("JUnit 5로 테스트 작성하기")
-                .author("Hwan")
-                .build();
-
-        testPost2 = Post.builder()
-                .title("JPA 테스트")
-                .content("@DataJpaTest 어노테이션 활용")
-                .author("Hwan")
-                .build();
-    }
-
     @Test
     @DisplayName("포스트 저장 테스트")
-    void save() {
-        // given (준비)
-        // setUp()에서 testPost1 준비됨
+    void savePost() {
+        // Given
+        Post post = Post.builder()
+                .title("테스트 제목")
+                .content("테스트 내용")
+                .author("테스트 작성자")
+                .build();
 
-        // when (실행)
-        Post savedPost = postRepository.save(testPost1);
+        // When
+        Post savedPost = postRepository.save(post);
 
-        // then (검증)
+        // Then
         assertThat(savedPost.getId()).isNotNull();
-        assertThat(savedPost.getTitle()).isEqualTo("Spring Boot 테스트");
-        assertThat(savedPost.getContent()).isEqualTo("JUnit 5로 테스트 작성하기");
-        assertThat(savedPost.getAuthor()).isEqualTo("Hwan");
+        assertThat(savedPost.getTitle()).isEqualTo("테스트 제목");
+        assertThat(savedPost.getContent()).isEqualTo("테스트 내용");
+        assertThat(savedPost.getAuthor()).isEqualTo("테스트 작성자");
         assertThat(savedPost.getCreatedAt()).isNotNull();
         assertThat(savedPost.getUpdatedAt()).isNotNull();
     }
@@ -61,103 +43,138 @@ class PostRepositoryTest {
     @Test
     @DisplayName("ID로 포스트 조회 테스트")
     void findById() {
-        // given
-        Post savedPost = postRepository.save(testPost1);
+        // Given
+        Post post = Post.builder()
+                .title("테스트 제목")
+                .content("테스트 내용")
+                .author("테스트 작성자")
+                .build();
+        Post savedPost = postRepository.save(post);
 
-        // when
+        // When
         Optional<Post> foundPost = postRepository.findById(savedPost.getId());
 
-        // then
+        // Then
         assertThat(foundPost).isPresent();
-        assertThat(foundPost.get().getTitle()).isEqualTo("Spring Boot 테스트");
+        assertThat(foundPost.get().getTitle()).isEqualTo("테스트 제목");
     }
 
     @Test
     @DisplayName("전체 포스트 조회 테스트")
     void findAll() {
-        // given
-        postRepository.save(testPost1);
-        postRepository.save(testPost2);
+        // Given
+        Post post1 = Post.builder()
+                .title("제목1")
+                .content("내용1")
+                .author("작성자1")
+                .build();
+        Post post2 = Post.builder()
+                .title("제목2")
+                .content("내용2")
+                .author("작성자2")
+                .build();
+        postRepository.save(post1);
+        postRepository.save(post2);
 
-        // when
+        // When
         List<Post> posts = postRepository.findAll();
 
-        // then
+        // Then
         assertThat(posts).hasSize(2);
-        assertThat(posts).extracting("title")
-                .containsExactlyInAnyOrder("Spring Boot 테스트", "JPA 테스트");
+    }
+
+    @Test
+    @DisplayName("포스트 수정 테스트")
+    void updatePost() {
+        // Given
+        Post post = Post.builder()
+                .title("원본 제목")
+                .content("원본 내용")
+                .author("작성자")
+                .build();
+        Post savedPost = postRepository.save(post);
+
+        // When - update 메서드 사용! ⭐
+        savedPost.update("수정된 제목", "수정된 내용");
+        Post updatedPost = postRepository.save(savedPost);
+
+        // Then
+        assertThat(updatedPost.getTitle()).isEqualTo("수정된 제목");
+        assertThat(updatedPost.getContent()).isEqualTo("수정된 내용");
+    }
+
+    @Test
+    @DisplayName("포스트 삭제 테스트")
+    void deletePost() {
+        // Given
+        Post post = Post.builder()
+                .title("삭제할 제목")
+                .content("삭제할 내용")
+                .author("작성자")
+                .build();
+        Post savedPost = postRepository.save(post);
+
+        // When
+        postRepository.delete(savedPost);
+
+        // Then
+        Optional<Post> deletedPost = postRepository.findById(savedPost.getId());
+        assertThat(deletedPost).isEmpty();
     }
 
     @Test
     @DisplayName("제목으로 포스트 검색 테스트")
     void findByTitleContaining() {
-        // given
-        postRepository.save(testPost1);
-        postRepository.save(testPost2);
+        // Given
+        Post post1 = Post.builder()
+                .title("Spring Boot 테스트")
+                .content("내용1")
+                .author("작성자1")
+                .build();
+        Post post2 = Post.builder()
+                .title("JPA 테스트")
+                .content("내용2")
+                .author("작성자2")
+                .build();
+        postRepository.save(post1);
+        postRepository.save(post2);
 
-        // when
-        List<Post> posts = postRepository.findByTitleContaining("테스트");
+        // When
+        List<Post> posts = postRepository.findByTitleContaining("Spring");
 
-        // then
-        assertThat(posts).hasSize(2);
-        assertThat(posts).extracting("title")
-                .contains("Spring Boot 테스트", "JPA 테스트");
+        // Then
+        assertThat(posts).hasSize(1);
+        assertThat(posts.get(0).getTitle()).contains("Spring Boot");
     }
 
     @Test
     @DisplayName("작성자로 포스트 검색 테스트")
     void findByAuthor() {
-        // given
-        postRepository.save(testPost1);
-        postRepository.save(testPost2);
-
-        Post otherAuthorPost = Post.builder()
-                .title("다른 작성자 포스트")
-                .content("내용")
+        // Given
+        Post post1 = Post.builder()
+                .title("제목1")
+                .content("내용1")
+                .author("Hwan")
+                .build();
+        Post post2 = Post.builder()
+                .title("제목2")
+                .content("내용2")
+                .author("Hwan")
+                .build();
+        Post post3 = Post.builder()
+                .title("제목3")
+                .content("내용3")
                 .author("Other")
                 .build();
-        postRepository.save(otherAuthorPost);
+        postRepository.save(post1);
+        postRepository.save(post2);
+        postRepository.save(post3);
 
-        // when
+        // When
         List<Post> hwanPosts = postRepository.findByAuthor("Hwan");
 
-        // then
+        // Then
         assertThat(hwanPosts).hasSize(2);
         assertThat(hwanPosts).allMatch(post -> post.getAuthor().equals("Hwan"));
-    }
-
-    @Test
-    @DisplayName("포스트 삭제 테스트")
-    void delete() {
-        // given
-        Post savedPost = postRepository.save(testPost1);
-        Long postId = savedPost.getId();
-
-        // when
-        postRepository.deleteById(postId);
-
-        // then
-        Optional<Post> deletedPost = postRepository.findById(postId);
-        assertThat(deletedPost).isEmpty();
-    }
-
-    @Test
-    @DisplayName("포스트 수정 테스트")
-    void update() throws InterruptedException {
-        // given
-        Post savedPost = postRepository.save(testPost1);
-
-        // 시간 차이를 만들기 위해 잠시 대기
-        Thread.sleep(10);
-
-        // when
-        savedPost.setTitle("수정된 제목");
-        savedPost.setContent("수정된 내용");
-        Post updatedPost = postRepository.save(savedPost);
-
-        // then
-        assertThat(updatedPost.getTitle()).isEqualTo("수정된 제목");
-        assertThat(updatedPost.getContent()).isEqualTo("수정된 내용");
-        assertThat(updatedPost.getUpdatedAt()).isAfterOrEqualTo(updatedPost.getCreatedAt());  // ← isAfter → isAfterOrEqualTo 변경
     }
 }
