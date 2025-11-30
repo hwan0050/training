@@ -18,22 +18,21 @@ public class PostService {
 
     private final PostRepository postRepository;
 
-    // 전체 조회
+    // 전체 포스트 조회
     public List<PostResponse> getAllPosts() {
-        return postRepository.findAll()
-                .stream()
+        return postRepository.findAll().stream()
                 .map(PostResponse::from)
                 .collect(Collectors.toList());
     }
 
-    // ID로 조회
+    // ID로 포스트 조회
     public PostResponse getPostById(Long id) {
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Post not found with id: " + id));
         return PostResponse.from(post);
     }
 
-    // 생성
+    // 포스트 생성
     @Transactional
     public PostResponse createPost(PostRequest request) {
         Post post = Post.builder()
@@ -46,21 +45,17 @@ public class PostService {
         return PostResponse.from(savedPost);
     }
 
-    // 수정
+    // 포스트 수정
     @Transactional
     public PostResponse updatePost(Long id, PostRequest request) {
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Post not found with id: " + id));
 
-        post.setTitle(request.getTitle());
-        post.setContent(request.getContent());
-        post.setAuthor(request.getAuthor());
-
-        Post updatedPost = postRepository.save(post);
-        return PostResponse.from(updatedPost);
+        post.update(request.getTitle(), request.getContent());
+        return PostResponse.from(post);
     }
 
-    // 삭제
+    // 포스트 삭제
     @Transactional
     public void deletePost(Long id) {
         Post post = postRepository.findById(id)
@@ -69,17 +64,15 @@ public class PostService {
     }
 
     // 제목으로 검색
-    public List<PostResponse> searchByTitle(String keyword) {
-        return postRepository.findByTitleContaining(keyword)
-                .stream()
+    public List<PostResponse> searchByTitle(String title) {
+        return postRepository.findByTitleContaining(title).stream()
                 .map(PostResponse::from)
                 .collect(Collectors.toList());
     }
 
     // 작성자로 검색
-    public List<PostResponse> searchByAuthor(String author) {
-        return postRepository.findByAuthor(author)
-                .stream()
+    public List<PostResponse> getPostsByAuthor(String author) {
+        return postRepository.findByAuthor(author).stream()
                 .map(PostResponse::from)
                 .collect(Collectors.toList());
     }
