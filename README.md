@@ -32,8 +32,6 @@ Git Factory는 단순한 코드 저장소가 아닌, **체계적인 학습 여�
 
 ---
 
----
-
 ## 🗺️ 학습 로드맵
 
 ### ✅ Phase 1: 기초 다지기 (완료!)
@@ -90,7 +88,7 @@ Git Factory는 단순한 코드 저장소가 아닌, **체계적인 학습 여�
 ### 🔄 Phase 2: 중급 개발 (진행 중)
 
 **시작일**: 2025-11-23  
-**현재 진도**: Phase 2-4 완료 ✅
+**현재 진도**: Phase 2-5 Module 1 & 2 완료 ✅
 
 ---
 
@@ -235,15 +233,75 @@ src/test/java/com/gitfactory/blogapi/
 
 ---
 
-#### 📋 Phase 2-5: API Documentation & Integration Testing (예정)
+#### ✅ Phase 2-5: API Documentation (Module 1 & 2 완료!) 🎉
 
-**예상 기간**: 2-3일
+**학습 기간**: 2025-12-06 (1일)  
+**학습 시간**: 약 4-5시간  
+**완성 코드**: ~1,000줄 (테스트 + 설정)  
+**완료 커밋**: 예정
+
+**완료된 모듈**:
+- ✅ **Module 1**: Spring REST Docs (테스트 기반 문서)
+- ✅ **Module 2**: Swagger/OpenAPI (인터랙티브 문서)
+
+**학습 내용**:
+
+**Module 1: Spring REST Docs**
+- REST Docs 의존성 및 AsciiDoctor 플러그인 설정
+- 테스트 기반 API 문서 자동 생성
+- 7개 API 문서화 테스트 작성
+- AsciiDoc 문서 작성 및 HTML 변환
+- @AutoConfigureRestDocs, document() 활용
+
+**Module 2: Swagger/OpenAPI**
+- springdoc-openapi 의존성 추가 (2.6.0)
+- SwaggerConfig 설정 (OpenAPI 3.1)
+- Controller @Tag 어노테이션
+- DTO @Schema 정의
+- Record 타입 DTO 패턴 (toEntity(), from())
+- Swagger UI 실행 및 테스트
+
+**주요 성과**:
+- 7개 API 완전 문서화 (REST Docs + Swagger)
+- 32개 테스트 100% 통과 (25 + 7)
+- Spring Boot 버전 호환성 문제 해결 (3.4.12 → 3.3.5)
+- Record 타입 DTO 패턴 확립
+- 2가지 문서화 전략 동시 활용
+
+**해결한 이슈**:
+1. Spring Boot 버전 호환성 → 3.3.5로 다운그레이드
+2. Record 타입 접근자 → request.title(), post.createdAt()
+3. PostResponse.from() 메서드 누락 → 정적 팩토리 메서드 추가
+4. Post.update() 파라미터 → 3개 파라미터로 수정
+5. Repository 메서드 누락 → 검색 메서드 추가
+
+**생성된 파일**:
+- `PostControllerRestDocsTest.java` (~250 lines)
+- `index.adoc` (~200 lines)
+- `SwaggerConfig.java` (~120 lines)
+- PostRequest/PostResponse 스키마 정의
+- build/generated-snippets/ (7개 API)
+- build/docs/asciidoc/index.html
+
+**API 문서 접속**:
+- REST Docs: `build/docs/asciidoc/index.html`
+- Swagger UI: `http://localhost:8080/swagger-ui/index.html` ✅
+- OpenAPI JSON: `http://localhost:8080/v3/api-docs`
+
+**문서**:
+- [SWAGGER_LEARNING.md](./docs/SWAGGER_LEARNING.md) (~1,000 lines)
+- [PHASE2-5_MODULE1-2_HANDOVER.md](./docs/PHASE2-5_MODULE1-2_HANDOVER.md) (~800 lines)
+
+---
+
+#### 📋 Phase 2-5 Module 3 (예정)
+
+**예상 기간**: 1-2일
 
 **계획**:
-- Spring REST Docs
-- Swagger/OpenAPI
 - 통합 테스트 (@SpringBootTest)
 - 테스트 커버리지 측정 (JaCoCo)
+- Testcontainers (선택)
 
 ---
 
@@ -276,8 +334,10 @@ git-factory/
 │   ├── PHASE2-2_HANDOVER.md                (Phase 2-2)
 │   ├── DOCKER_LEARNING.md                  (Phase 2-3, ~800 lines)
 │   ├── PHASE2-3_HANDOVER.md                (Phase 2-3, ~600 lines)
-│   ├── TESTING_LEARNING.md                 (Phase 2-4, ~800 lines) ✨
-│   └── PHASE2-4_HANDOVER.md                (Phase 2-4, ~600 lines) ✨
+│   ├── TESTING_LEARNING.md                 (Phase 2-4, ~800 lines)
+│   ├── PHASE2-4_HANDOVER.md                (Phase 2-4, ~600 lines)
+│   ├── SWAGGER_LEARNING.md                 (Phase 2-5, ~1,000 lines) ✨
+│   └── PHASE2-5_MODULE1-2_HANDOVER.md      (Phase 2-5, ~800 lines) ✨
 │
 ├── workflows/                               # 🔄 Git 워크플로우 학습
 │   └── git-practice/
@@ -308,13 +368,13 @@ git-factory/
 │   │
 │   └── java/
 │       └── spring-boot/
-│           └── blog-api/                   (Phase 2-2, 2-3, 2-4)
+│           └── blog-api/                   (Phase 2-2, 2-3, 2-4, 2-5)
 │               ├── src/
 │               │   ├── main/
 │               │   │   ├── java/
 │               │   │   │   └── com/gitfactory/blogapi/
 │               │   │   │       ├── controller/
-│               │   │   │       │   └── PostController.java
+│               │   │   │       │   └── PostController.java           (@Tag) ✨
 │               │   │   │       ├── service/
 │               │   │   │       │   └── PostService.java
 │               │   │   │       ├── repository/
@@ -322,29 +382,39 @@ git-factory/
 │               │   │   │       ├── entity/
 │               │   │   │       │   └── Post.java
 │               │   │   │       ├── dto/
-│               │   │   │       │   ├── PostRequest.java
-│               │   │   │       │   └── PostResponse.java
+│               │   │   │       │   ├── PostRequest.java             (@Schema) ✨
+│               │   │   │       │   └── PostResponse.java            (@Schema) ✨
 │               │   │   │       ├── config/
-│               │   │   │       │   └── JpaAuditingConfig.java      ✨
+│               │   │   │       │   ├── JpaAuditingConfig.java
+│               │   │   │       │   └── SwaggerConfig.java            ✨ NEW
 │               │   │   │       └── exception/
-│               │   │   │           └── GlobalExceptionHandler.java ✨
+│               │   │   │           └── GlobalExceptionHandler.java
 │               │   │   └── resources/
 │               │   │       └── application.properties
 │               │   │
-│               │   └── test/                           ✨ NEW
+│               │   ├── docs/                                         ✨ NEW
+│               │   │   └── asciidoc/
+│               │   │       └── index.adoc                            ✨ NEW
+│               │   │
+│               │   └── test/
 │               │       └── java/
 │               │           └── com/gitfactory/blogapi/
 │               │               ├── repository/
-│               │               │   └── PostRepositoryTest.java      (7개 테스트)
+│               │               │   └── PostRepositoryTest.java       (7개)
 │               │               ├── service/
-│               │               │   └── PostServiceTest.java         (10개 테스트)
+│               │               │   └── PostServiceTest.java          (10개)
 │               │               └── controller/
-│               │                   └── PostControllerTest.java      (8개 테스트)
+│               │                   ├── PostControllerTest.java       (8개)
+│               │                   └── PostControllerRestDocsTest.java (7개) ✨
+│               │
+│               ├── build/                                            ✨ NEW
+│               │   ├── generated-snippets/                          (7개 API) ✨
+│               │   └── docs/asciidoc/index.html                     ✨ NEW
 │               │
 │               ├── Dockerfile                          (Phase 2-3)
 │               ├── docker-compose.yml                  (Phase 2-3)
 │               ├── .dockerignore                       (Phase 2-3)
-│               └── build.gradle
+│               └── build.gradle                        (REST Docs + Swagger) ✨
 │
 ├── projects/                                # 🚀 실전 프로젝트
 │   └── bookmark-manager/                   (Phase 1)
@@ -376,6 +446,7 @@ cd practices/java/spring-boot/blog-api
 ./gradlew test --tests "com.gitfactory.blogapi.repository.PostRepositoryTest"
 ./gradlew test --tests "com.gitfactory.blogapi.service.PostServiceTest"
 ./gradlew test --tests "com.gitfactory.blogapi.controller.PostControllerTest"
+./gradlew test --tests "com.gitfactory.blogapi.controller.PostControllerRestDocsTest"
 
 # 테스트 리포트 확인
 # build/reports/tests/test/index.html
@@ -383,12 +454,38 @@ cd practices/java/spring-boot/blog-api
 
 **예상 결과**:
 ```
-BUILD SUCCESSFUL in 8s
-✅ PostRepositoryTest:  7/7  (100%)
-✅ PostServiceTest:     10/10 (100%)
-✅ PostControllerTest:  8/8   (100%)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-✅ 총합:                25/25 (100%)
+BUILD SUCCESSFUL in 10s
+✅ PostRepositoryTest:         7/7   (100%)
+✅ PostServiceTest:            10/10 (100%)
+✅ PostControllerTest:         8/8   (100%)
+✅ PostControllerRestDocsTest: 7/7   (100%)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ 총합:                       32/32 (100%)
+```
+
+---
+
+## 📚 API 문서 확인
+
+### REST Docs (정적 HTML)
+```bash
+# AsciiDoc → HTML 변환
+./gradlew asciidoctor
+
+# 문서 확인
+# build/docs/asciidoc/index.html 브라우저에서 열기
+```
+
+### Swagger UI (인터랙티브)
+```bash
+# 애플리케이션 실행
+./gradlew bootRun
+
+# 브라우저 접속
+http://localhost:8080/swagger-ui/index.html
+
+# OpenAPI JSON
+http://localhost:8080/v3/api-docs
 ```
 
 ---
@@ -461,7 +558,7 @@ docker-compose down -v
     - 주요 이슈 및 해결 방법
     - 인수인계 가이드
 
-### Phase 2-4: TDD & Testing ✨
+### Phase 2-4: TDD & Testing
 - [TESTING_LEARNING.md](./docs/TESTING_LEARNING.md) - 800 lines
     - TDD 개념 및 사이클
     - Spring Boot Test Annotations
@@ -471,6 +568,21 @@ docker-compose down -v
 - [PHASE2-4_HANDOVER.md](./docs/PHASE2-4_HANDOVER.md) - 600 lines
     - 테스트 구조 상세
     - 25개 테스트 케이스 설명
+    - 주요 이슈 및 해결 방법
+    - 인수인계 가이드
+
+### Phase 2-5: API Documentation ✨
+- [SWAGGER_LEARNING.md](./docs/SWAGGER_LEARNING.md) - 1,000 lines
+    - Spring REST Docs 개념 및 구현
+    - Swagger/OpenAPI 통합
+    - 테스트 기반 문서 생성
+    - AsciiDoc 작성법
+    - REST Docs vs Swagger 비교
+    - 트러블슈팅 (버전 호환성, Record 타입)
+- [PHASE2-5_MODULE1-2_HANDOVER.md](./docs/PHASE2-5_MODULE1-2_HANDOVER.md) - 800 lines
+    - Module 1 & 2 상세 구현
+    - 7개 API 문서화 완료
+    - Swagger UI 설정
     - 주요 이슈 및 해결 방법
     - 인수인계 가이드
 
@@ -497,7 +609,7 @@ feature/* (기능 개발)
 # 예시
 feat(blog-api): Add Post CRUD endpoints
 test(repository): Add PostRepositoryTest with 7 test cases
-docs: Update README for Phase 2-4 completion
+docs(phase2-5): Complete Module 1 & 2 - REST Docs & Swagger
 fix(test): Resolve JPA Auditing conflict in tests
 ```
 
@@ -509,8 +621,6 @@ fix(test): Resolve JPA Auditing conflict in tests
 - `refactor`: 리팩토링
 - `style`: 코드 포맷팅
 - `chore`: 빌드/설정 변경
-
----
 
 ---
 
@@ -526,29 +636,28 @@ fix(test): Resolve JPA Auditing conflict in tests
 
 ### 🔄 Phase 2 (진행 중)
 - **기간**: 2025-11-23 ~ 현재
-- **완료 모듈**: Phase 2-1, 2-2, 2-3, 2-4 ✅
+- **완료 모듈**: Phase 2-1, 2-2, 2-3, 2-4, 2-5 (Module 1 & 2) ✅
 - **작성 코드**:
     - Java/Spring Boot: ~350 lines
-    - 테스트 코드: ~800 lines
+    - 테스트 코드: ~1,800 lines ✨
     - Docker 설정: ~120 lines
     - Next.js: ~800 lines
-- **테스트 케이스**: 25개 (100% 통과 ✅)
-- **작성 문서**: ~4,400 lines (8개 문서)
-- **커밋 수**: 13개+
+- **테스트 케이스**: 32개 (100% 통과 ✅) ✨
+- **작성 문서**: ~6,200 lines (10개 문서) ✨
+- **커밋 수**: 15개+
 
 ---
 
 ## 🚀 다음 단계
 
 ### 즉시 진행
-- [ ] Phase 2-4 최종 커밋 및 PR
+- [ ] Phase 2-5 Module 1 & 2 최종 커밋 및 PR
 - [ ] develop → main 브랜치 병합
 
-### Phase 2-5 계획
-- [ ] Spring REST Docs 작성
-- [ ] Swagger UI 통합
-- [ ] 통합 테스트 추가
+### Phase 2-5 Module 3 계획
+- [ ] 통합 테스트 (@SpringBootTest)
 - [ ] 테스트 커버리지 측정 (JaCoCo)
+- [ ] Testcontainers (선택)
 
 ---
 
@@ -566,6 +675,15 @@ fix(test): Resolve JPA Auditing conflict in tests
 ---
 
 ## 📝 업데이트 로그
+
+### 2025-12-06 - Phase 2-5 Module 1 & 2 완료! 🎉
+- ✅ Spring REST Docs 테스트 기반 문서 자동 생성
+- ✅ Swagger/OpenAPI 인터랙티브 문서 구축
+- ✅ 7개 API 완전 문서화 (REST Docs + Swagger)
+- ✅ Spring Boot 버전 호환성 문제 해결 (3.4.12 → 3.3.5)
+- ✅ Record 타입 DTO 패턴 확립
+- ✅ 32개 테스트 100% 통과 (25 + 7)
+- 📊 총 1,000줄 코드, 1,800줄 문서
 
 ### 2025-12-01 - Phase 2-4 완료! 🎉
 - ✅ TDD & Spring Boot Testing 학습 완료

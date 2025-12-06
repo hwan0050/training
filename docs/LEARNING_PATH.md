@@ -422,11 +422,11 @@ projects/bookmark-manager/
 
 **시작일**: 2025-11-23  
 **예상 완료**: 2026-01  
-**현재 진도**: Phase 2-4 완료 ✅
+**현재 진도**: Phase 2-5 Module 1 & 2 완료 ✅
 
 ### 🎓 Phase 2 학습 목표
 - Next.js로 SSR/SSG 구현
-- Spring Boot 심화 (JPA, Testing)
+- Spring Boot 심화 (JPA, Testing, API Documentation)
 - Docker 컨테이너화
 - 데이터베이스 설계 및 최적화
 - 테스트 주도 개발 (TDD)
@@ -1255,21 +1255,329 @@ PostControllerTest:     8/8 passed  (100%)
 
 ---
 
-### 📋 Phase 2-5: API Documentation & Integration Testing (예정)
+### ✅ Phase 2-5: API Documentation (Module 1 & 2 완료!) 🎉
 
-**예상 기간**: 2-3일
+**학습 기간**: 2025-12-06 (1일)  
+**총 학습 시간**: 약 4-5시간  
+**완성 코드**: ~1,000줄 (테스트 + 설정)  
+**완료 커밋**: 예정
 
-#### 학습 계획
-- [ ] Spring REST Docs 작성
-- [ ] Swagger/OpenAPI 통합
+**완료된 모듈**:
+- ✅ **Module 1**: Spring REST Docs
+- ✅ **Module 2**: Swagger/OpenAPI
+
+---
+
+#### 🎓 학습 목표
+- ✅ Spring REST Docs로 테스트 기반 문서 자동 생성
+- ✅ Swagger/OpenAPI로 인터랙티브 API 문서 구축
+- ✅ REST Docs와 Swagger 동시 활용 전략
+- ✅ Spring Boot 버전 호환성 문제 해결
+
+#### Module 1: Spring REST Docs
+
+**학습 내용**:
+- [x] REST Docs 의존성 및 AsciiDoctor 플러그인 설정
+- [x] 테스트 기반 API 문서 자동 생성
+- [x] Snippets 생성 (7개 API)
+- [x] AsciiDoc 문서 작성
+- [x] HTML 문서 자동 변환
+- [x] @AutoConfigureRestDocs 활용
+- [x] MockMvc를 활용한 REST Docs 테스트
+
+**구현 내용**:
+```java
+@WebMvcTest(PostController.class)
+@AutoConfigureRestDocs
+@ExtendWith(RestDocumentationExtension.class)
+class PostControllerRestDocsTest {
+    @Test
+    void 게시글_생성_API_문서화() throws Exception {
+        mockMvc.perform(post("/api/posts")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(request)))
+            .andExpect(status().isCreated())
+            .andDo(document("posts-create",
+                preprocessRequest(prettyPrint()),
+                preprocessResponse(prettyPrint()),
+                requestFields(
+                    fieldWithPath("title").description("제목"),
+                    fieldWithPath("content").description("내용"),
+                    fieldWithPath("author").description("작성자")
+                ),
+                responseFields(
+                    fieldWithPath("id").description("게시글 ID"),
+                    // ...
+                )
+            ));
+    }
+    // + 6개 API 문서화 테스트
+}
+```
+
+**생성된 파일**:
+- `PostControllerRestDocsTest.java` (~250 lines)
+- `src/docs/asciidoc/index.adoc` (~200 lines)
+- `build.gradle` (REST Docs 설정 추가)
+- `build/generated-snippets/` (7개 API snippets)
+- `build/docs/asciidoc/index.html` (최종 HTML 문서)
+
+---
+
+#### Module 2: Swagger/OpenAPI
+
+**학습 내용**:
+- [x] springdoc-openapi 의존성 추가 (2.6.0)
+- [x] Swagger 설정 클래스 작성
+- [x] Controller 어노테이션 (@Tag)
+- [x] DTO 스키마 정의 (@Schema)
+- [x] Swagger UI 실행 및 테스트
+- [x] OpenAPI 3.1 스펙 준수
+- [x] Record 타입 DTO 패턴 확립
+
+**구현 내용**:
+```java
+@Configuration
+public class SwaggerConfig {
+    @Bean
+    public OpenAPI openAPI() {
+        return new OpenAPI()
+            .info(new Info()
+                .title("Blog API Documentation")
+                .description("게시글 관리를 위한 RESTful API")
+                .version("1.0.0"))
+            .servers(List.of(
+                new Server()
+                    .url("http://localhost:8080")
+                    .description("로컬 개발 서버")
+            ));
+    }
+}
+
+@Tag(name = "게시글 API", description = "게시글 CRUD 및 검색 API")
+@RestController
+@RequestMapping("/api/posts")
+public class PostController {
+    // 7개 API 엔드포인트
+}
+
+public record PostRequest(
+    @Schema(description = "게시글 제목", example = "첫 번째 게시글", requiredMode = REQUIRED)
+    String title,
+    @Schema(description = "게시글 내용", example = "내용입니다", requiredMode = REQUIRED)
+    String content,
+    @Schema(description = "작성자", example = "홍길동", requiredMode = REQUIRED)
+    String author
+) {
+    public Post toEntity() {
+        return Post.builder()
+            .title(title)
+            .content(content)
+            .author(author)
+            .build();
+    }
+}
+```
+
+**생성된 파일**:
+- `SwaggerConfig.java` (~120 lines)
+- `PostController.java` (Swagger 어노테이션 추가)
+- `PostRequest.java` (@Schema + toEntity())
+- `PostResponse.java` (@Schema + from())
+
+**Swagger UI 접속**:
+- http://localhost:8080/swagger-ui/index.html ✅
+- http://localhost:8080/v3/api-docs (OpenAPI JSON)
+
+---
+
+#### 학습 통합
+```
+✅ Git 워크플로우
+   - Feature 브랜치: feature/phase2-5-api-docs
+   - Conventional Commits 적용
+   - 모듈별 단계적 작업
+
+✅ Spring Boot Testing
+   - @AutoConfigureRestDocs
+   - MockMvc + document()
+   - preprocessRequest/Response
+   - requestFields, responseFields
+
+✅ Swagger/OpenAPI
+   - OpenAPI Bean 설정
+   - @Tag, @Schema 어노테이션
+   - Record 타입 DTO
+   - toEntity(), from() 패턴
+```
+
+#### 핵심 개념 정리
+
+**1. REST Docs vs Swagger 비교**
+
+| 특징 | Spring REST Docs | Swagger/OpenAPI |
+|------|------------------|-----------------|
+| 문서 생성 방식 | 테스트 기반 | 어노테이션 기반 |
+| 정확성 | ⭐⭐⭐⭐⭐ (매우 높음) | ⭐⭐⭐ (중간) |
+| UI | 정적 HTML | 인터랙티브 UI |
+| API 테스트 | ❌ 불가능 | ✅ 실시간 테스트 |
+| 구현 난이도 | ⭐⭐⭐⭐ (높음) | ⭐⭐ (낮음) |
+| 사용 시나리오 | 공식 문서, 외부 공개 | 내부 개발, 테스트 |
+
+**추천: 두 가지 모두 사용!**
+- REST Docs: 정확한 공식 문서
+- Swagger: 빠른 개발 및 테스트
+
+**2. Record 타입 DTO 패턴**
+```java
+// 불변 DTO with 변환 메서드
+public record PostRequest(
+    String title,
+    String content,
+    String author
+) {
+    // DTO → Entity
+    public Post toEntity() {
+        return Post.builder()
+            .title(title)
+            .content(content)
+            .author(author)
+            .build();
+    }
+}
+
+public record PostResponse(
+    Long id,
+    String title,
+    String content,
+    String author,
+    LocalDateTime createdAt,
+    LocalDateTime updatedAt
+) {
+    // Entity → DTO
+    public static PostResponse from(Post post) {
+        return new PostResponse(
+            post.getId(),
+            post.getTitle(),
+            post.getContent(),
+            post.getAuthor(),
+            post.getCreatedAt(),
+            post.getUpdatedAt()
+        );
+    }
+}
+```
+
+---
+
+#### 주요 이슈 및 해결
+
+**Issue 1: Spring Boot 버전 호환성**
+```
+NoSuchMethodError: 'void org.springframework.web.method.ControllerAdviceBean.<init>'
+```
+- **원인**: Spring Boot 3.4.12와 springdoc-openapi 2.6.0 호환 문제
+- **해결**: Spring Boot 버전 다운그레이드 (3.4.12 → 3.3.5)
+
+**Issue 2: Record 타입 접근자**
+```java
+// ❌ 에러
+request.getTitle()
+post.getCreatedAt()
+
+// ✅ Record 접근자
+request.title()
+post.createdAt()
+```
+
+**Issue 3: PostResponse.from() 메서드 누락**
+- **원인**: Controller에서 `PostResponse.from(post)` 호출하지만 메서드 없음
+- **해결**: PostResponse에 정적 팩토리 메서드 추가
+
+**Issue 4: Post.update() 파라미터 개수**
+```java
+// 변경 전 (2개 파라미터)
+public void update(String title, String content) { }
+
+// 변경 후 (3개 파라미터)
+public void update(String title, String content, String author) { }
+```
+
+**Issue 5: Repository 메서드 누락**
+- **원인**: `findByTitleContaining` 메서드 없음
+- **해결**: PostRepository에 검색 메서드 추가
+
+---
+
+#### 체크포인트
+- [x] REST Docs 의존성 및 설정 추가 ✅
+- [x] 7개 API 문서화 테스트 작성 ✅
+- [x] AsciiDoc 문서 작성 ✅
+- [x] HTML 문서 생성 확인 ✅
+- [x] Swagger 의존성 추가 ✅
+- [x] SwaggerConfig 작성 ✅
+- [x] Controller 어노테이션 추가 ✅
+- [x] DTO 스키마 정의 ✅
+- [x] Swagger UI 접속 확인 ✅
+- [x] 버전 호환성 문제 해결 ✅
+
+#### 테스트 실행 결과
+```bash
+$ ./gradlew clean test
+
+BUILD SUCCESSFUL in 10s
+
+> Task :test
+PostRepositoryTest:         7/7 passed   (100%)
+PostServiceTest:            10/10 passed (100%)
+PostControllerTest:         8/8 passed   (100%)
+PostControllerRestDocsTest: 7/7 passed   (100%)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+총 32개 테스트:             32/32 passed (100%) ✅
+```
+
+#### 완료 결과물
+- ✅ **테스트 코드**: ~250줄 (REST Docs)
+- ✅ **설정 코드**: ~450줄 (Swagger + REST Docs)
+- 📄 **학습 노트**: [SWAGGER_LEARNING.md](../docs/SWAGGER_LEARNING.md) (~1,000 lines)
+- 📄 **핸드오버**: [PHASE2-5_MODULE1-2_HANDOVER.md](../docs/PHASE2-5_MODULE1-2_HANDOVER.md) (~800 lines)
+- 📊 **코드량**: ~1,000줄
+- 📁 **파일**: 13개 (생성/수정)
+- 🧪 **테스트**: 32개 (100% 통과)
+- 📚 **문서**: 2개 (REST Docs HTML + Swagger UI)
+
+#### API 문서 접속
+- **REST Docs**: `build/docs/asciidoc/index.html` (정적 문서)
+- **Swagger UI**: `http://localhost:8080/swagger-ui/index.html` (인터랙티브)
+- **OpenAPI JSON**: `http://localhost:8080/v3/api-docs`
+
+#### 학습 성과
+```
+✅ REST Docs 테스트 기반 문서 자동 생성
+✅ Swagger UI 실시간 API 테스트
+✅ 두 가지 문서화 전략 동시 활용
+✅ Record 타입 DTO 패턴 확립
+✅ Spring Boot 버전 호환성 문제 해결
+✅ 트러블슈팅 경험 축적
+```
+
+**✅ Phase 2-5 Module 1 & 2 완료! (2025-12-06)**
+
+---
+
+#### 📋 Phase 2-5 Module 3 (예정)
+
+**예상 기간**: 1-2일
+
+**학습 계획**:
 - [ ] 통합 테스트 (@SpringBootTest)
 - [ ] 테스트 커버리지 측정 (JaCoCo)
-- [ ] Testcontainers 활용
+- [ ] Testcontainers (선택)
 
-#### 학습 목표
-- API 문서 자동 생성
+**학습 목표**:
 - 실제 환경과 유사한 통합 테스트
 - 테스트 커버리지 80% 이상 달성
+- Docker 컨테이너 기반 테스트 환경
 
 ---
 
@@ -1383,6 +1691,7 @@ Technology:
 - [x] JPA 기본 매핑 ✅
 - [x] Spring Boot Testing (TDD) ✅
 - [x] 계층별 테스트 작성 ✅
+- [x] API Documentation (REST Docs + Swagger) ✅
 - [ ] JPA 연관 관계 매핑
 - [ ] Spring Security JWT 인증
 
@@ -1402,6 +1711,7 @@ Technology:
 - [x] @DataJpaTest Repository 테스트 ✅
 - [x] @WebMvcTest Controller 테스트 ✅
 - [x] Given-When-Then 패턴 ✅
+- [x] REST Docs 문서 자동 생성 ✅
 - [ ] 통합 테스트 (@SpringBootTest)
 - [ ] Testcontainers
 - [ ] 테스트 커버리지 80%+
@@ -1410,11 +1720,11 @@ Technology:
 
 ## 🎯 다음 단계
 
-Phase 2-4 완료 후:
-1. ✅ TDD & Spring Boot Testing 완료
+Phase 2-5 Module 1 & 2 완료 후:
+1. ✅ REST Docs & Swagger/OpenAPI 완료
 2. ✅ 학습 노트 및 핸드오버 문서 작성
-3. 🔜 Phase 2-4 최종 커밋 및 PR
-4. 🔜 Phase 2-5 준비: API Documentation & Integration Testing
+3. 🔜 Phase 2-5 Module 1 & 2 최종 커밋 및 PR
+4. 🔜 Phase 2-5 Module 3: Integration Testing
 5. 🔜 Docker 환경 준비 후 실행 테스트
 
 ---
@@ -1437,6 +1747,8 @@ Phase 2-4 완료 후:
 ### 블로그 & 문서
 - [Spring.io Blog](https://spring.io/blog)
 - [Spring Boot Testing Guide](https://spring.io/guides/gs/testing-web/)
+- [Spring REST Docs](https://docs.spring.io/spring-restdocs/docs/current/reference/html5/)
+- [Swagger/OpenAPI](https://swagger.io/docs/)
 - [React.dev](https://react.dev)
 - [Next.js Docs](https://nextjs.org/docs)
 - [Docker Docs](https://docs.docker.com/)
@@ -1470,5 +1782,16 @@ Phase 2-4 완료 후:
 **기간**: 2025-11-30 ~ 2025-12-01 (2일)  
 **성과**: TDD & Spring Boot Testing 마스터  
 **결과물**: 25개 테스트 (100% 통과), 800줄 테스트 코드, 1,400줄 문서
+
+### ✅ Phase 2-5 Module 1 & 2 완료! (2025-12-06)
+**기간**: 2025-12-06 (1일)  
+**성과**: Spring REST Docs & Swagger/OpenAPI 마스터  
+**결과물**:
+- 7개 API 완전 문서화 (REST Docs + Swagger)
+- 32개 테스트 100% 통과 (25 + 7)
+- Spring Boot 버전 호환성 문제 해결 (3.4.12 → 3.3.5)
+- Record 타입 DTO 패턴 확립
+- 2가지 문서화 전략 동시 활용
+- 1,000줄 코드, 1,800줄 문서
 
 **학습은 여정입니다. 꾸준히 나아가세요! 🚀**
